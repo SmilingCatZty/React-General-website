@@ -22,5 +22,10 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["src"]
+  "include": ["src"],
+  // 解决 'JSON schema for the TypeScript compiler’s configuration file' 的问题
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
 }
