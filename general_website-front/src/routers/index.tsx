@@ -4,6 +4,7 @@ import { Navigate } from 'react-router-dom'
 const DisplayPage = lazy(() => import('@/pages/Display/index'))
 const Home = lazy(() => import('@/pages/index'))
 const HomeMain = lazy(() => import('@/pages/HomeMain'))
+const HomeNews = lazy(()=>import('@/pages/News'))
 
 const WithLodingComponents = (component: JSX.Element) => (
   <React.Suspense fallback={<div>loading...</div>}>
@@ -14,7 +15,7 @@ const WithLodingComponents = (component: JSX.Element) => (
 const routerConfig = [
   {
     path: '/',
-    element: <Navigate to='/home/home-main' />
+    element: <Navigate to='/home/news' />
   },
   {
     path: '/display',
@@ -28,9 +29,14 @@ const routerConfig = [
     element: WithLodingComponents(<Home />),
     children: [
       {
-        path: 'home-main',
+        path: 'main',
         element: WithLodingComponents(< HomeMain />)
+      },
+      {
+        path: 'news',
+        element: WithLodingComponents(< HomeNews />)
       }
+      // HomeNews
     ]
   }
 ]

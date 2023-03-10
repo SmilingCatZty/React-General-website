@@ -76,6 +76,9 @@
             
 
             .ant-list-item {
+              overflow: hidden;
+              white-space: nowrap;
+              text-overflow: ellipsis;
               color: #cdc5c5;
               // border-bottom: 1px solid blue;
             }

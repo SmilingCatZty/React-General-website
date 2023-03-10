@@ -4,7 +4,7 @@ import Board from './components/board'
 import Area from './components/area'
 import MyFooter from '@/components/Footer/index'
 import { HomeInfoModal } from '@/modules/home'
-import { FooterInfoModal } from '@/modules/footer'
+// import { FooterInfoModal } from '@/modules/footer'
 
 
 const HomeMain = () => {
@@ -64,26 +64,6 @@ const HomeMain = () => {
     }
   }
 
-  const footerInfo: FooterInfoModal = {
-    imgLogo: '',
-    safetyRules: [
-      '· 健康游戏忠告：抵制不良游戏，拒绝盗版游戏。注意自我保护，谨防受骗上当。适度游戏益脑，沉迷游戏伤身。合理安排时间，享受健康生活。',
-      '· 沪公网安备31010402001113号|增值电信业务经营许可证:沪B2-20190555',
-      '· 互联网违法不良信息举报邮箱: SmillingCatzty@gmail.com ',
-      '· 互联网违法不良信息举报电话: 021-60371750 (工作时间: 每天00点 - 00点)',
-      '· 亲爱的市民朋友,上海警方反诈劝阻电话“962110”系专门针对避免您财产被骗受损而设,请您一旦收到来电,立即接听',
-      '· 未成年成长关爱热线,021-60371740 (服务时间:8:00-23:00)',
-      '我不是骗子'
-    ],
-    personalInfo: {
-      userName: 'SmillingCat',
-      userLocation: '上海',
-      userMobile: 15569108988,
-      userWeChat: 15569108988,
-      userQQ: 1067862702
-    },
-    otherMsg: '说实话,我也不知道这一块应该放啥,反正咱们就随便写写吧,还望见谅'
-  }
 
   return (
     <div className='homeMain'>
@@ -93,11 +73,11 @@ const HomeMain = () => {
       <div className='board' style={{ width: '100vw', height: '100vh' }}>
         <Board boardInfo={homeInfo.board} />
       </div>
-      <div className='area' style={{ width: '100vw', height: '170vh' }}>
+      <div className='area' style={{ width: '100vw', minHeight: '40vh' }}>
         <Area areaInfo={homeInfo.area} />
       </div>
       <div className='thanks' style={{ width: '100vw', height: '60vh' }}>
-        <MyFooter footerInfo={footerInfo} />
+        <MyFooter />
       </div>
     </div>
   )

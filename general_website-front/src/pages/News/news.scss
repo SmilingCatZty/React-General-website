@@ -1,0 +1,240 @@
+.news {
+  min-width: 100%;
+  height: 80vh;
+  background-size: cover;
+
+  .news-hot {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    perspective: 900px;
+    padding: 20px 20px;
+
+    .hot-box {
+      position: relative;
+      width: 250px;
+      height: 220px;
+      transition: .3s;
+      margin: 25px;
+      transform: rotateY(0);
+      transition-delay: .1s;
+      color: #fff;
+      background-color: rgba(0, 0, 0, .3);
+      border-radius: 5px;
+      border: 1px solid rgb(47, 135, 116);
+
+      .hot-image {
+        width: 100%;
+        height: 100%;
+        // background-color: rgb(125, 43, 43);
+
+        img {
+          width: 100%;
+          height: 150px;
+          object-fit: cover;
+        }
+      }
+
+      .hot-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        width: 100%;
+        height: 80px;
+
+        .content-title {
+          text-align: center;
+        }
+
+        .content-describe {
+          padding: 0 10px;
+          line-height: 15px;
+          text-align: center;
+          display: none;
+        }
+
+        .content-time {
+          bottom: 0;
+          font-size: 12px;
+          padding-left: 10px;
+        }
+      }
+    }
+  }
+
+  .news-hot:hover .hot-box {
+    transform: rotateY(20deg);
+    height: 250px;
+  }
+
+  .news-hot .hot-box:hover {
+    z-index: 2;
+    height: 250px;
+    overflow: hidden;
+    transform: rotateY(0deg) scale(1.3);
+    box-shadow: 0 25px 40px rgba(0, 0, 0, .7);
+    transition-delay: .3s;
+    transition: .3s;
+  }
+
+  .news-hot .hot-box:hover .content-describe {
+    transition-delay: .3s;
+    transition: .3s;
+    display: block;
+    font-size: 12px;
+  }
+
+  .news-hot:hover~.hot-box {
+    transform: rotateY(-20deg);
+  }
+
+  // 消息部分
+  .news-advertisement {
+    height: 20vh;
+
+    .advertisement-review {
+      background-size: cover;
+      background-repeat: no-repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+
+      .advertisement-title {
+        text-align: center;
+        font-size: 2rem;
+        margin-bottom: 10px;
+      }
+    }
+  }
+
+
+  // tabs部分
+  .news-info {
+    width: 100%;
+    min-height: 20px;
+    background-color: rgba(0, 0, 0, 0.07);
+
+    .info-tabs {
+      box-sizing: border-box;
+      padding-left: 20px;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      height: 80px;
+
+      .tabs-btn {
+        width: 160px;
+        margin-right: 20px;
+      }
+    }
+  }
+
+  // 列表部分
+  .info-list {
+    // background-color: rgba(255, 255, 255, .7);
+
+    ul {
+      .info-list_item {
+        border-radius: 5px;
+        box-sizing: border-box;
+        background-color: rgba(255, 255, 255, .6);
+        width: 100%;
+        height: 180px;
+        padding: 10px 20px;
+        margin-bottom: 10px;
+
+        .item_contain {
+          display: flex;
+          align-items: center;
+
+          img {
+            width: 260px;
+            height: 160px;
+            border-radius: 5px;
+          }
+
+          .item-contain_content {
+            flex: 1;
+            height: 160px;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            margin-left: 20px;
+            position: relative;
+            display: inline-block;
+
+            .contain-title {
+              font-size: 24px;
+            }
+
+            .contain-time {
+              color: rgba(204, 204, 204, 1);
+              position: absolute;
+              right: 0;
+              bottom: 0;
+              font-size: 14px;
+            }
+
+          }
+        }
+      }
+
+      .info-list_item:hover {
+        cursor: pointer;
+        transition-delay: .1s;
+        box-shadow: 10px 20px 10px rgba(0, 0, 0, .1);
+        border: 2px solid rgba(0, 0, 0, 0.1);
+        background-color: rgba(255, 255, 255, 1);
+      }
+
+      .info-list_item:hover .info-list_item {}
+    }
+
+    .info-load {
+      display: flex;
+      justify-content: center;
+      height: 60px;
+      // background-color: #fff;
+
+      .load-more {
+        background-color: rgb(143, 137, 137);
+        text-align: center;
+        font-size: 16px;
+        width: 100%;
+        height: 40px;
+      }
+    }
+  }
+
+  // .img_background {
+  //   position: relative;
+  //   width: 100vw;
+  //   height: 100vh;
+  //   font-weight:900;
+  //   font-size: 40rem;
+  //   -webkit-background-clip: text;
+  //   -webkit-text-fill-color: transparent;
+  //   text-align: right;
+  //   background-size:cover;
+  // }
+  // .img_background::before{
+  //   position: absolute;
+  //   content: '';
+  //   background-size: cover;
+  //   background-image: inherit;
+  //   background-position: 50% 50%;
+  //   left: 0;
+  //   top: 0;
+  //   bottom: 0;
+  //   right: 0;
+  //   z-index: -99;
+  // }
+
+  .footer {}
+}

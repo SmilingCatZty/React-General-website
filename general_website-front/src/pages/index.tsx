@@ -9,24 +9,24 @@ import { NavigateInfoModal } from '@/components/Navigate/navigate'
 const HomePage: React.FC = () => {
 
   const navList: NavigateInfoModal = {
-    defaultNav: 'home-main',
+    defaultNav: 'news',
     webLogo: '',
     userAvatar: '',
     menuList: [
       {
         label: '首页',
-        key: 'home-main',
+        key: 'main',
         icon: <MailOutlined />,
       },
       {
         label: '资讯',
-        key: 'home-news',
+        key: 'news',
         icon: <AppstoreOutlined />,
-        disabled: true,
+        disabled: false,
       },
       {
         label: '社区',
-        key: 'home-community',
+        key: 'community',
         icon: <AppstoreOutlined />,
         disabled: true,
       },
