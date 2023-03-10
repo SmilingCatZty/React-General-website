@@ -64,9 +64,13 @@ const Display: React.FC = () => {
     ]
   }
 
+  const handleWheel = () => {
+    // console.log(1233333);
+  }
+
 
   return (
-    <div className='display'>
+    <div className='display' onWheel={handleWheel}>
       <div style={{ width: '100vw', height: '100vh' }} >
         <Swiper s_list={swiperList} />
       </div>

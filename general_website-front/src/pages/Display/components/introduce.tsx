@@ -15,7 +15,7 @@ const DisplayIntroduce: React.FC<IntroduceProps> = (props) => {
           {
             props.introduceInfo.introduceInfoList.map((item) => {
               return (
-                <p>{item.description}</p>
+                <p key={item.description}>{item.description}</p>
               )
             })
           }

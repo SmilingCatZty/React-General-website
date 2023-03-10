@@ -1,16 +1,17 @@
 .display-target {
   width: 100%;
   height: 100%;
-  margin-left: 10rem;
+  // margin-left: 10rem;
   .display-target_title{
     padding: 1rem;
   }
 
   .display-target-main {
+    padding-left: 10rem;
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    width: 100%;
+    // width: 100%;
     height: 100%;
 
     .display-target-contain {

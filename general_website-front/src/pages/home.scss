@@ -1,0 +1,70 @@
+.homePage {
+  .home-navigation {
+    background-color: rgba($color: #000000, $alpha: .4);
+
+    width: 100%;
+    display: flex;
+    position: fixed;
+    z-index: 2;
+    height: 80px;
+
+    .nav-home {
+      width: 200px;
+      height: 100%;
+
+      img {
+        margin: 0 20px;
+        width: 150px;
+        height: 80px;
+
+      }
+    }
+
+    .nav-navigation {
+      flex: 1;
+
+      .ant-menu-light {
+        background-color: transparent;
+      }
+
+      ul {
+        // background-color: rgba($color: #000000, $alpha: .4);
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+
+        li {
+          span {
+            color: #fff;
+
+            svg {
+              color: #fff;
+            }
+          }
+        }
+      }
+    }
+
+    .nav-personal {
+      padding: 0 20px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      width: 200px;
+      height: 100%;
+
+      .personal-avatar {
+        .ant-avatar {
+          background-color: rgba($color: #565353, $alpha: .8);
+        }
+      }
+    }
+
+  }
+
+  .main {}
+
+  .news {}
+
+  .area {}
+}

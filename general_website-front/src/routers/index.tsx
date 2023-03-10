@@ -2,7 +2,8 @@ import React, { lazy } from 'react'
 import { Navigate } from 'react-router-dom'
 
 const DisplayPage = lazy(() => import('@/pages/Display/index'))
-const Home = lazy(() => import('@/pages/Home/index'))
+const Home = lazy(() => import('@/pages/index'))
+const HomeMain = lazy(() => import('@/pages/HomeMain'))
 
 const WithLodingComponents = (component: JSX.Element) => (
   <React.Suspense fallback={<div>loading...</div>}>
@@ -13,7 +14,7 @@ const WithLodingComponents = (component: JSX.Element) => (
 const routerConfig = [
   {
     path: '/',
-    element: <Navigate to='/display' />
+    element: <Navigate to='/home/home-main' />
   },
   {
     path: '/display',
@@ -24,7 +25,13 @@ const routerConfig = [
   // 懒加载写法
   {
     path: '/home',
-    element: WithLodingComponents(<Home />)
+    element: WithLodingComponents(<Home />),
+    children: [
+      {
+        path: 'home-main',
+        element: WithLodingComponents(< HomeMain />)
+      }
+    ]
   }
 ]
 

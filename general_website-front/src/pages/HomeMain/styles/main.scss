@@ -1,0 +1,127 @@
+.home-main {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  align-content: center;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+
+  .main-title {
+    width: 100%;
+    height: 100px;
+  }
+
+  .main-contain {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 70%;
+
+    .main-title {
+      width: 100%;
+      height: 40%;
+      text-align: center;
+      font-size: 80px;
+    }
+
+    .main-video_btnbg {
+      width: 500px;
+      height: 100px;
+      background-size: cover;
+      background-repeat: no-repeat;
+
+      .main-video_btn {
+        display: inline-block;
+        cursor: pointer;
+        position: relative;
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        left: 50%;
+        top: 53%;
+        transform: translate(-50%, -50%);
+
+        .anticon svg {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          transform: translate(-50%);
+        }
+      }
+    }
+
+    .main-download {
+      margin-top: 20px;
+      position: relative;
+      width: 500px;
+      height: 100px;
+
+      .download-container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .download-code {
+          width: 100px;
+          height: 100px;
+          opacity: .3;
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+
+        .download-type {
+          width: 240px;
+          height: 100%;
+          text-align: center;
+          font-size: 40px;
+        }
+
+        .download-pc {
+          width: 100px;
+          height: 100px;
+          opacity: .3;
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+      }
+
+    }
+
+    .main-arrow {
+      position: relative;
+      margin-top: 20px;
+      width: 25px;
+      // height: 5%;
+      animation: bottomArrows 2s linear infinite;
+
+      .arrow {
+        width: 25px;
+        height: 15px;
+        margin-bottom: 2px;
+        background-image: url('../../../assets//icons/ys-arrow.png');
+        background-repeat: no-repeat;
+        background-color: transparent;
+
+      }
+    }
+  }
+}
+
+@keyframes bottomArrows {
+  50% {
+    opacity: 0;
+  }
+}

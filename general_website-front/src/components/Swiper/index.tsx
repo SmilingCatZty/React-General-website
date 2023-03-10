@@ -10,9 +10,7 @@ interface SwiperProps extends SwiperModel {
   effectType?: 'slide' | 'fade' | 'cube' | 'coverflow' | 'flip' | 'creative'
 }
 
-const SwiperPage: React.FC<SwiperProps> = (props) => {
-  console.log(props.effectType);
-  
+const SwiperPage: React.FC<SwiperProps> = (props) => {  
   return (
     <div className='wrap'>
       <Swiper
