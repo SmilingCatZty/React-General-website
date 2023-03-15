@@ -15,10 +15,10 @@ import {
 const Display: React.FC = () => {
 
   const swiperList: SwiperImgListModal[] = [
-    { imgId: nanoid(), imgTitle: '图片1', imgPath: 'http://rqthp68he.hn-bkt.clouddn.com/.guidao/sky1_8k.jpg' },
-    { imgId: nanoid(), imgTitle: '图片2', imgPath: 'http://rqthp68he.hn-bkt.clouddn.com/.guidao/45_shadow1_8k.jpg' },
-    { imgId: nanoid(), imgTitle: '图片3', imgPath: 'http://rqthp68he.hn-bkt.clouddn.com/.guidao/46_shadow2_8k.jpg' },
-    { imgId: nanoid(), imgTitle: '图片4', imgPath: 'http://rqthp68he.hn-bkt.clouddn.com/.guidao/Shine2_8k%281%29.jpg' },
+    { imgId: nanoid(), imgTitle: '图片1', imgPath: '' },
+    { imgId: nanoid(), imgTitle: '图片2', imgPath: '' },
+    { imgId: nanoid(), imgTitle: '图片3', imgPath: '' },
+    { imgId: nanoid(), imgTitle: '图片4', imgPath: '' },
   ]
 
   const introduceList: DisplayIntroduceModel = {
@@ -38,10 +38,10 @@ const Display: React.FC = () => {
   const funcList: DisplayFuncModel = {
     title: '02 | 网站功能',
     funcInfoList: [
-      { imgId: nanoid(), imgTitle: '图片1', imgPath: 'http://rqthp68he.hn-bkt.clouddn.com/.guidao/sky1_8k.jpg' },
-      { imgId: nanoid(), imgTitle: '图片2', imgPath: 'http://rqthp68he.hn-bkt.clouddn.com/.guidao/45_shadow1_8k.jpg' },
-      { imgId: nanoid(), imgTitle: '图片3', imgPath: 'http://rqthp68he.hn-bkt.clouddn.com/.guidao/46_shadow2_8k.jpg' },
-      { imgId: nanoid(), imgTitle: '图片4', imgPath: 'http://rqthp68he.hn-bkt.clouddn.com/.guidao/Shine2_8k%281%29.jpg' },
+      { imgId: nanoid(), imgTitle: '图片1', imgPath: '' },
+      { imgId: nanoid(), imgTitle: '图片2', imgPath: '' },
+      { imgId: nanoid(), imgTitle: '图片3', imgPath: '' },
+      { imgId: nanoid(), imgTitle: '图片4', imgPath: '' },
     ]
   }
 

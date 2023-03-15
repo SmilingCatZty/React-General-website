@@ -4,7 +4,9 @@ import { Navigate } from 'react-router-dom'
 const DisplayPage = lazy(() => import('@/pages/Display/index'))
 const Home = lazy(() => import('@/pages/index'))
 const HomeMain = lazy(() => import('@/pages/HomeMain'))
-const HomeNews = lazy(()=>import('@/pages/News'))
+const HomeNews = lazy(() => import('@/pages/News'))
+const HomeCommunity = lazy(() => import('@/pages/Community/index'))
+const CommunityDetail = lazy(() => import('@/pages/Community/detail'))
 
 const WithLodingComponents = (component: JSX.Element) => (
   <React.Suspense fallback={<div>loading...</div>}>
@@ -15,7 +17,7 @@ const WithLodingComponents = (component: JSX.Element) => (
 const routerConfig = [
   {
     path: '/',
-    element: <Navigate to='/home/news' />
+    element: <Navigate to='/home/community' />
   },
   {
     path: '/display',
@@ -35,10 +37,20 @@ const routerConfig = [
       {
         path: 'news',
         element: WithLodingComponents(< HomeNews />)
+      },
+      {
+        path: 'community',
+        element: WithLodingComponents(<HomeCommunity />),
+        children: [
+          {
+            path: 'post-detail',
+            element: WithLodingComponents(<CommunityDetail />)
+          }
+        ]
       }
       // HomeNews
     ]
-  }
+  },
 ]
 
 export default routerConfig

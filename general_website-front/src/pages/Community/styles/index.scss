@@ -1,0 +1,48 @@
+.homeCommunity {
+  width: 100%;
+  height: 100%;
+
+  .community-occupy{
+    position: fixed;
+    width: 100%;
+    height: 5rem;
+    overflow: hidden;
+
+  }
+
+  .community-contain {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 5rem 100px 0 100px;
+
+    .community-left {
+      position: fixed;
+      width: 280px;
+      height: 580px;
+      left: 100px;
+      background-image: url('https://www.uviewui.com/common/iPhone13.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+    .community-main {
+      position: fixed;
+      width: 580px;
+      height:680px;
+      margin: 0 300px;
+      overflow: scroll;
+    }
+    
+    .community-main::-webkit-scrollbar {
+      display: none;
+    }
+    .community-right {
+      position: fixed;
+      width: 280px;
+      height: 100vh;
+      right: 100px;
+    }
+  }
+}

@@ -1,0 +1,135 @@
+.pageleft {
+  .left-occupy {
+    width: 280px;
+    height: 30px;
+  }
+
+  .friends-situation {
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+  }
+
+  .left-friends {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0 20px;
+    height: 400px;
+
+    ul {
+      height: 100%;
+      overflow: scroll;
+
+      .friends-contain {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px;
+
+        .avatar-left {
+          display: flex;
+        }
+
+        .avatar-other {
+          margin-left: 10px;
+          font-size: 14px;
+
+          p .other-msg {
+            line-height: 20px;
+            color: rgba(220, 215, 215, 1);
+          }
+        }
+      }
+
+      .friends-contain:hover {
+        background-color: rgba(220, 215, 215, .3);
+        cursor: pointer;
+      }
+    }
+
+    ul::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .chat {
+    box-sizing: border-box;
+    padding: 0 20px;
+    width: 100%;
+    height: 60px;
+    font-size: 24px;
+
+    .chat-type {
+      height: 100%;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      border-top: 1px solid rgb(188, 179, 179);
+    }
+
+    .chat-type span:hover {
+      cursor: pointer;
+
+    }
+  }
+
+  height: 550px;
+}
+
+.ant-modal-body {
+  .chat-content {
+    background-color: #f4f0f0;
+    height: 330px;
+    overflow: scroll;
+    border-radius: 5px;
+
+    ul li {
+      padding: 5px;
+
+      .chat-item span {
+        margin: 0 5px;
+      }
+    }
+
+  }
+
+  .chat-content::-webkit-scrollbar {
+    display: none;
+  }
+
+  .chat-enter {
+    width: 100%;
+    height: 130px;
+
+    .enter-func {
+      border-left: 1px solid rgba(220, 215, 215, .3);
+      border-right: 1px solid rgba(220, 215, 215, .3);
+      border-top: 1px solid rgba(220, 215, 215, .3);
+      border-radius: 5px;
+
+      height: 40px;
+      display: flex;
+      align-items: center;
+
+      span {
+        font-size: 18px;
+        width: 40px;
+        // padding: 0 10px;
+      }
+    }
+
+    .enter-input {
+      position: relative;
+      width: 100%;
+      height: 90px;
+      border: 1px solid rgba(220, 215, 215, .3);
+      border-radius: 5px;
+
+      .input-send {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+      }
+    }
+  }
+}

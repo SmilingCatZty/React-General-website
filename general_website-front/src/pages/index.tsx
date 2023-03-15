@@ -9,7 +9,7 @@ import { NavigateInfoModal } from '@/components/Navigate/navigate'
 const HomePage: React.FC = () => {
 
   const navList: NavigateInfoModal = {
-    defaultNav: 'news',
+    defaultNav: 'community',
     webLogo: '',
     userAvatar: '',
     menuList: [
@@ -28,7 +28,7 @@ const HomePage: React.FC = () => {
         label: '社区',
         key: 'community',
         icon: <AppstoreOutlined />,
-        disabled: true,
+        disabled: false,
       },
       {
         label: '数据分析',
