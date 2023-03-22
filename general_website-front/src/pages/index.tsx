@@ -1,7 +1,7 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { Avatar } from 'antd';
-import { AppstoreOutlined, MailOutlined, UserOutlined } from '@ant-design/icons';
+import { HomeOutlined, MailOutlined, UserOutlined, AlibabaOutlined, LineChartOutlined, PushpinOutlined } from '@ant-design/icons';
 import './home.scss'
 import Navigation from '@/components/Navigate/index';
 import { NavigateInfoModal } from '@/components/Navigate/navigate'
@@ -9,45 +9,39 @@ import { NavigateInfoModal } from '@/components/Navigate/navigate'
 const HomePage: React.FC = () => {
 
   const navList: NavigateInfoModal = {
-    defaultNav: 'community',
+    defaultNav: 'data-analysis',
     webLogo: '',
     userAvatar: '',
     menuList: [
       {
         label: '首页',
         key: 'main',
-        icon: <MailOutlined />,
+        icon: <HomeOutlined />
       },
       {
         label: '资讯',
         key: 'news',
-        icon: <AppstoreOutlined />,
+        icon: <MailOutlined />,
         disabled: false,
       },
       {
         label: '社区',
         key: 'community',
-        icon: <AppstoreOutlined />,
+        icon: <AlibabaOutlined />,
         disabled: false,
       },
       {
-        label: '数据分析',
+        label: '数据管理',
         key: 'data-manager',
-        icon: <AppstoreOutlined />,
-        disabled: true,
+        icon: <LineChartOutlined />,
+        disabled: false,
       },
       {
-        label: '资讯管理',
-        key: 'news-manager',
-        icon: <AppstoreOutlined />,
+        label: '配置',
+        key: 'config',
+        icon: <PushpinOutlined />,
         disabled: true,
-      },
-      {
-        label: '发帖管理',
-        key: 'send-manager',
-        icon: <AppstoreOutlined />,
-        disabled: true,
-      },
+      }
       // {
       //   label: (
       //     <a href="https://ant.design" target="_blank" rel="noopener noreferrer">

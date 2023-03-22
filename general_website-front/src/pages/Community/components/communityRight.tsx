@@ -16,7 +16,12 @@ const CommunityRight: React.FC<CommunityRightProps> = (props) => {
   }
 
   const viewMore = (page: string) => {
-    navigateTo(page)
+    switch (page) {
+      case 'hotPost':
+        return navigateTo(page)
+      case 'news':
+        return navigateTo('/home/news')
+    }
   }
 
   const goDetail = (id: string | number) => {
