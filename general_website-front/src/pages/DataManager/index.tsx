@@ -3,7 +3,6 @@ import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/ico
 import type { MenuProps } from 'antd';
 import { Menu } from 'antd';
 import './styles/index.scss'
-import Example from './example'
 import TEST from './components/TEST'
 
 type MenuItem = Required<MenuProps>['items'][number];
@@ -23,8 +22,6 @@ function getItem(
     type,
   } as MenuItem;
 }
-
-const list = ''
 
 const items: MenuItem[] = [
   getItem('数据分析', 'sub1', <MailOutlined />, [

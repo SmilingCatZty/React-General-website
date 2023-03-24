@@ -3,6 +3,8 @@ var app = require('../app')
 var debug = require('debug')('general-website-server:server')
 var http = require('http')
 
+require("../config/plugin");
+
 /**
  * Get port from environment and store in Express.
  * 从环境中获取当前的端口和store

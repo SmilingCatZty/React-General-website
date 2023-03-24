@@ -1,13 +1,29 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Main from './components/main'
 import Board from './components/board'
 import Area from './components/area'
 import MyFooter from '@/components/Footer/index'
 import { HomeInfoModal } from '@/modules/home'
 // import { FooterInfoModal } from '@/modules/footer'
+import axios from 'axios'
+
 
 
 const HomeMain = () => {
+
+  useEffect(() => {
+    getHomeInfo()
+  })
+
+  const getHomeInfo = async () => {
+    try {
+      await axios.get('/home/page',);
+      
+    } catch (error) {
+      console.log('error',error);
+      
+    }
+  }
 
   const homeInfo: HomeInfoModal = {
     main: {
