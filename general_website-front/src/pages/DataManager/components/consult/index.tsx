@@ -121,15 +121,15 @@ const DataManagerConsult: React.FC = () => {
 
   // select改变
   const selectHandler = (value: any) => {
-    detailInfo.type = value
-    setSearchInfo(detailInfo)
+    searchInfo.type = value
+    setSearchInfo(searchInfo)
   }
 
   // title改变
   const changeHandler = (e: any) => {
     const { value: inputValue } = e.target
-    detailInfo.title = inputValue
-    setSearchInfo(detailInfo)
+    searchInfo.title = inputValue
+    setSearchInfo(searchInfo)
   }
 
   // 添加
@@ -141,7 +141,7 @@ const DataManagerConsult: React.FC = () => {
 
   // 展示详情弹窗
   const showDetail = (obj: ConsultInfoModel, status: string) => {
-    setDetailInfo(obj)
+    setDetailInfo(obj)    
     setDetailStatus(status)
     consultDetaiRef.current?.showModal()
   }
