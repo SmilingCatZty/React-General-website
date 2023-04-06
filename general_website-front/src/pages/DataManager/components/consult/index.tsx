@@ -122,6 +122,7 @@ const DataManagerConsult: React.FC = () => {
   // select改变
   const selectHandler = (value: any) => {
     detailInfo.type = value
+    setSearchInfo(detailInfo)
   }
 
   // title改变
