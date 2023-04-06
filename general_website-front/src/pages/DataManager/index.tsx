@@ -3,7 +3,8 @@ import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/ico
 import type { MenuProps } from 'antd';
 import { Menu } from 'antd';
 import './styles/index.scss'
-import TEST from './components/TEST'
+import { Outlet, useNavigate } from 'react-router-dom';
+import { MenuInfo } from 'rc-menu/lib/interface';
 
 type MenuItem = Required<MenuProps>['items'][number];
 
@@ -25,14 +26,11 @@ function getItem(
 
 const items: MenuItem[] = [
   getItem('数据分析', 'sub1', <MailOutlined />, [
-    getItem('数据分析1', '1'),
+    getItem('数据分析1', 'analyse'),
   ]),
   getItem('资讯管理', 'sub2', <AppstoreOutlined />, [
-    getItem('新闻', 'news'),
-    getItem('通知', 'notice'),
-    getItem('活动', 'active'),
-    getItem('其他', 'other'),
-    getItem('Submenu', 'sub3', null, [getItem('Option 7', '7'), getItem('Option 8', '8')]),
+    getItem('咨询列表', 'consult'),
+    getItem('资讯编辑', 'consult-detail'),
   ]),
   getItem('社区管理', 'sub4', <SettingOutlined />, [
     getItem('社区帖子管理', 'post'),
@@ -47,6 +45,9 @@ const rootSubmenuKeys = ['sub1', 'sub2', 'sub4'];
 
 const DataAnalysis: React.FC = () => {
   const [openKeys, setOpenKeys] = useState(['sub1']);
+  const navigateTo = useNavigate()
+
+  const [title, setTitle] = useState('在线人数统计')
 
   const onOpenChange: MenuProps['onOpenChange'] = (keys) => {
     const latestOpenKey = keys.find((key) => openKeys.indexOf(key) === -1);
@@ -56,6 +57,21 @@ const DataAnalysis: React.FC = () => {
       setOpenKeys(latestOpenKey ? [latestOpenKey] : []);
     }
   };
+
+  const menuItemHandler = (v: MenuInfo) => {
+    switch (v.key) {
+      case 'consult':
+        setTitle(() => '咨询汇总列表')
+        break
+      case 'consult-detail':
+        setTitle(() => '咨询内容编辑')
+        break
+      case 'community':
+        setTitle(() => '社区帖子列表')
+        break
+    }
+    navigateTo(v.key)
+  }
 
   return (
     <div className='data-analysis'>
@@ -67,13 +83,15 @@ const DataAnalysis: React.FC = () => {
             onOpenChange={onOpenChange}
             style={{ width: 256 }}
             items={items}
+            onClick={menuItemHandler}
           />
         </div>
         <div className='analysis-container'>
-          <div className='analysis-title'>在线人数统计</div>
+          <div className='analysis-title'>{title}</div>
           <div className='analysis-content'>
             {/* <Example/> */}
-            <TEST/>
+            <Outlet />
+            {/* <TEST /> */}
           </div>
         </div>
       </div>

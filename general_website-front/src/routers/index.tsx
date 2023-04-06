@@ -8,6 +8,7 @@ const HomeNews = lazy(() => import('@/pages/News'))
 const HomeCommunity = lazy(() => import('@/pages/Community/index'))
 const CommunityDetail = lazy(() => import('@/pages/Community/detail'))
 const DataAnalysis = lazy(() => import('@/pages/DataManager/index'))
+const DataManagerConsult = lazy(() => import('@/pages/DataManager/components/consult/index'))
 
 const WithLodingComponents = (component: JSX.Element) => (
   <React.Suspense fallback={<div>loading...</div>}>
@@ -51,7 +52,13 @@ const routerConfig = [
       },
       {
         path: 'data-manager',
-        element: WithLodingComponents(<DataAnalysis />)
+        element: WithLodingComponents(<DataAnalysis />),
+        children: [
+          {
+            path: 'consult',
+            element: WithLodingComponents(<DataManagerConsult />)
+          },
+        ]
       }
       // HomeNews
     ]

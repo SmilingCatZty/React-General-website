@@ -12,9 +12,9 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe());
 
   // 设置路由前缀 ： exclude用于排除路由
-  app.setGlobalPrefix('wb', { exclude: ['view'] });
+  app.setGlobalPrefix('smilling-cat', { exclude: ['view'] });
 
   // 监听端口
-  await app.listen(3000);
+  await app.listen(5000);
 }
 bootstrap();

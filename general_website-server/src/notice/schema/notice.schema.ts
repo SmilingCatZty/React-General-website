@@ -10,6 +10,12 @@ export class Notice {
 
   @Prop()
   type: string;
+
+  @Prop()
+  img: string;
+
+  @Prop()
+  content: string;
 }
 
 export const NoticeSchema = SchemaFactory.createForClass(Notice);

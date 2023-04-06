@@ -3,6 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ExampleModule } from './Example/example.module';
+import { NoticeModule } from './notice/notice.modules';
 
 @Module({
   // 导入模块
@@ -13,6 +14,7 @@ import { ExampleModule } from './Example/example.module';
     //   imports: [MongooseModule.forRoot('mongodb://general_website:27017')],
     // }),
     ExampleModule,
+    NoticeModule,
   ],
   controllers: [AppController],
   providers: [AppService],
