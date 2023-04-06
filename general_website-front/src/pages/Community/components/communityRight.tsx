@@ -25,8 +25,6 @@ const CommunityRight: React.FC<CommunityRightProps> = (props) => {
   }
 
   const goDetail = (id: string | number) => {
-    console.log(123);
-
     navigateTo(`post-detail?id=${id}`)
   }
 

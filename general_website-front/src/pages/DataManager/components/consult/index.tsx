@@ -28,7 +28,7 @@ const DataManagerConsult: React.FC = () => {
 
   let [detailInfoList, setDetailInfoList] = useState<ConsultInfoModel[]>([]) // 详情页数据列表
   let [detailInfo, setDetailInfo] = useState<ConsultInfoModel>(defaultConsultValue) // 详情数据
-  const [pageInfo, setPageInfo] = useState({ // 分页用
+  let [pageInfo, setPageInfo] = useState({ // 分页用
     page: 1,
     size: 10
   })
@@ -78,30 +78,45 @@ const DataManagerConsult: React.FC = () => {
 
   // 分页
   const changePage = (page: number, size: number) => {
-    setPageInfo({ page, size })
-    search()
+    pageInfo = { page, size }
+    setPageInfo(pageInfo)
+    search(pageInfo)
   }
 
   // 搜索
-  const search = async () => {
-    console.log('searchInfo', searchInfo);
+  const search = async (pageParams?: { page: number, size: number }) => {
+    if (pageParams) {
+      pageInfo = pageParams
+    } else {
+      pageInfo = { page: 1, size: 10 }
+    }
+    setPageInfo(pageInfo)
     const params = {
       ...pageInfo,
       info: searchInfo
     }
     const res: any = await api.getConsultInfo(params)
-    console.log(res);
     if (res.status === 200) {
       setDetailInfoList(res.data.notice)
       setPageTotal(res.data.total)
     }
   }
 
+  // 更新
+  const update = () => {
+    search()
+  }
+
   // 重置
   const resetHandle = (v: any) => {
+    searchInfo.title = ''
+    searchInfo.type = ''
+    // searchInfo = defaultConsultValue // 这里直接附默认值，默认值不知道为什么会被改变
+    setSearchInfo(searchInfo)
     form.resetFields()
     form.setFieldValue([], {})
-    searchInfo = defaultConsultValue
+    search()
+
   }
 
   // select改变
@@ -171,7 +186,7 @@ const DataManagerConsult: React.FC = () => {
         <Button className="btn-add" type="default" style={{ backgroundColor: '#96e956' }} onClick={() => addHandle('add')}>
           新增
         </Button>
-        <Button className="btn-search" type="primary" onClick={search}>
+        <Button className="btn-search" type="primary" onClick={update}>
           搜索
         </Button>
         <Button className="btn-reset" onClick={resetHandle}>
@@ -181,7 +196,7 @@ const DataManagerConsult: React.FC = () => {
       <Table className="consult-table" dataSource={detailInfoList} columns={columns} pagination={false} rowKey={item => item._id as any} />
       <Pagination
         className="consult-pagination"
-        hideOnSinglePage={true}
+        // hideOnSinglePage={true}
         showSizeChanger={true}
         showTotal={
           (
@@ -196,7 +211,7 @@ const DataManagerConsult: React.FC = () => {
         total={pageTotal}
         onChange={changePage}
       />
-      <ConsultDetail curStatus={detailStatus} ref={consultDetaiRef} detailInfo={detailInfo} updateList={ search} />
+      <ConsultDetail curStatus={detailStatus} ref={consultDetaiRef} detailInfo={detailInfo} updateList={search} />
     </div>
   )
 }

@@ -65,7 +65,7 @@ const Display: React.FC = () => {
   }
 
   const handleWheel = () => {
-    // console.log(1233333);
+    // console.log(鼠标滚动事件);
   }
 
 

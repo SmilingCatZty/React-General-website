@@ -65,7 +65,6 @@ const CommunityLeft: React.FC = () => {
         <ul>
           {
             friendList.map((item, index) => {
-              // console.log(item.isLine)
               return (
                 <li key={item.userId + '_' + index} className='friends-contain' onClick={() => showModal(item)}>
                   <div className='avatar-left'>

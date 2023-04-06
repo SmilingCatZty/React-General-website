@@ -18,10 +18,9 @@ const HomeMain = () => {
   const getHomeInfo = async () => {
     try {
       await axios.get('/home/page',);
-      
     } catch (error) {
-      console.log('error',error);
-      
+      console.log('error', error);
+
     }
   }
 

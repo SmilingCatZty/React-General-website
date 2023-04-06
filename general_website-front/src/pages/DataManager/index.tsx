@@ -30,7 +30,6 @@ const items: MenuItem[] = [
   ]),
   getItem('资讯管理', 'sub2', <AppstoreOutlined />, [
     getItem('咨询列表', 'consult'),
-    getItem('资讯编辑', 'consult-detail'),
   ]),
   getItem('社区管理', 'sub4', <SettingOutlined />, [
     getItem('社区帖子管理', 'post'),
@@ -45,6 +44,7 @@ const rootSubmenuKeys = ['sub1', 'sub2', 'sub4'];
 
 const DataAnalysis: React.FC = () => {
   const [openKeys, setOpenKeys] = useState(['sub1']);
+  // const [openItemKey, setOpenItemKey] = useState('analyse')
   const navigateTo = useNavigate()
 
   const [title, setTitle] = useState('在线人数统计')
@@ -60,6 +60,9 @@ const DataAnalysis: React.FC = () => {
 
   const menuItemHandler = (v: MenuInfo) => {
     switch (v.key) {
+      case 'analyse':
+        setTitle(() => '在线人数统计')
+        break
       case 'consult':
         setTitle(() => '咨询汇总列表')
         break
@@ -70,7 +73,12 @@ const DataAnalysis: React.FC = () => {
         setTitle(() => '社区帖子列表')
         break
     }
-    navigateTo(v.key)
+    // setOpenItemKey(v.key)
+    if (v.key !== 'analyse') {
+      navigateTo(v.key)
+    } else {
+      navigateTo('/home/data-manager')
+    }
   }
 
   return (
@@ -80,6 +88,8 @@ const DataAnalysis: React.FC = () => {
           <Menu
             mode="inline"
             openKeys={openKeys}
+            defaultSelectedKeys={['analyse']}
+            defaultOpenKeys={openKeys}
             onOpenChange={onOpenChange}
             style={{ width: 256 }}
             items={items}
