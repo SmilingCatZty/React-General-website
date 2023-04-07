@@ -8,9 +8,11 @@ import {
   Get,
   InternalServerErrorException,
   Post,
+  Put,
 } from '@nestjs/common';
 import { ExampleService } from './example.service';
 import { CreateExampleDto } from './dto/create-example.dto';
+import { UpdateExampleDto } from './dto/update-example.dto';
 
 @Controller('example')
 export class ExampleController {
@@ -26,6 +28,17 @@ export class ExampleController {
       throw new InternalServerErrorException(error.msg);
     }
   }
+
+  @Put('update')
+  async update(@Body() updateExampleDto: UpdateExampleDto) {
+    try {
+      const example = this.exampleService.update(updateExampleDto);
+      return example;
+    } catch (error) {
+      throw new InternalServerErrorException(error.message);
+    }
+  }
+
   @Post('add')
   async create(@Body() createExampleDto: CreateExampleDto) {
     try {

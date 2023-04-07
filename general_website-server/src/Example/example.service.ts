@@ -30,4 +30,8 @@ export class ExampleService {
       .limit(size)
       .exec();
   }
+
+  async update(params): Promise<Example[]> {
+    return this.ExampleModel.findByIdAndUpdate(params._id, params.info);
+  }
 }

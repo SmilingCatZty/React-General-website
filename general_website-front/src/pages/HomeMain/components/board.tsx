@@ -6,6 +6,7 @@ import { List } from 'antd';
 import Swiper from '@/components/Swiper/index'
 import { nanoid } from 'nanoid';
 import { SwiperImgListModal } from '@/modules/swiper';
+import { useNavigate } from 'react-router-dom';
 
 
 interface BoardProps {
@@ -44,6 +45,12 @@ const onChange = (v: any) => {
 }
 
 const HomeBoard: React.FC<BoardProps> = (props) => {
+  const navigateTo = useNavigate()
+
+  const showMore = () => {
+    navigateTo('/home/news')
+  }
+
   return (
     <div className='home-board' style={{ backgroundImage: `url(${props.boardInfo.background})` }}>
       <h1 className='board-title'>{props.boardInfo.title}</h1>
@@ -88,7 +95,7 @@ const HomeBoard: React.FC<BoardProps> = (props) => {
               }
               onChange={onChange} />
           </div>
-          <div className='main-more'>查看全部资讯</div>
+          <div className='main-more' onClick={showMore}>查看全部资讯</div>
         </div>
       </div>
     </div >
