@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ExampleModule } from './Example/example.module';
 import { NoticeModule } from './notice/notice.modules';
+import { NewsModule } from './news/news.module';
 
 @Module({
   // 导入模块
@@ -15,6 +16,7 @@ import { NoticeModule } from './notice/notice.modules';
     // }),
     ExampleModule,
     NoticeModule,
+    NewsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

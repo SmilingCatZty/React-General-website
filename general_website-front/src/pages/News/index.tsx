@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Statistic, Button } from 'antd'
 import './news.scss'
 import { NewsInfoModal } from '@/modules/news'
 import MyFooter from '@/components/Footer/index'
 import dayjs from 'dayjs'
+import api from '@/service/api/consult.api'
 
 const { Countdown } = Statistic;
 
@@ -51,6 +52,19 @@ const consultList = [
 // const deadline = Date.now() + 1000 * 60 * 60 * 24 * 2 + 1000 * 30; // Dayjs is also OK
 
 const NewsPage = () => {
+
+  const getNewsList = async (more?: any) => {
+    try {
+      const res = await api.getNewsInfo(more)
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    return () => { getNewsList() }
+  }, [])
 
   return (
     <div className='news' style={{ backgroundImage: `url(${newsList.background})` }}>

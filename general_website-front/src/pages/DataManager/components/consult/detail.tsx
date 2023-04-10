@@ -5,6 +5,7 @@ import './styles/detail.scss'
 import TextArea from 'antd/es/input/TextArea';
 import { ConsultInfoModel } from '@/modules/data-manager/consult'
 import api from '@/service/api/consult.api'
+import dayjs from 'dayjs';
 
 
 interface ConsultDetailProps {
@@ -21,7 +22,7 @@ interface ModalFuncType {
 
 
 const ConsultDetail: React.FC<ConsultDetailProps> = forwardRef<ModalFuncType, ConsultDetailProps>((props, ref) => {
-  const { curStatus, detailInfo,updateList } = { ...props }
+  const { curStatus, detailInfo, updateList } = { ...props }
   const [form] = Form.useForm()
 
   useImperativeHandle(ref, () => ({
@@ -47,13 +48,42 @@ const ConsultDetail: React.FC<ConsultDetailProps> = forwardRef<ModalFuncType, Co
     setIsModalOpen(true);
   };
 
-  const handleOk = async () => {
-    const params = formList
-    const res = await api.updateConsultInfo(params)
-    if (res.status === 200) {
-      // 告知父组件刷新数据
-      updateList()
+  const paramsHandler = (pl: any) => {
+    const params: any = {}
+    Object.keys(pl).forEach((item: any) => {
+      console.log(pl[item]);
+      if (pl[item] !== '' && pl[item] !== undefined) {
+        console.log(item);
+        params[item] = pl[item]
+      }
+    })
+    return params
+  }
+
+  const handleOk = async (status: string) => {
+    const p = paramsHandler(formList)
+    console.log(p);
+    try {
+      const params = formList
+      if (status === 'add') {
+        const date = dayjs().unix()
+        params.createTime = date
+        const res = await api.addConsultInfo(params)
+        if (res.status === 200) {
+          // 告知父组件刷新数据
+          updateList()
+        }
+      } else {
+        const res = await api.updateConsultInfo(params)
+        if (res.status === 200) {
+          updateList()
+        }
+      }
+    } catch (error) {
+      console.log(error);
+
     }
+
     setIsModalOpen(false);
   };
 
@@ -84,7 +114,7 @@ const ConsultDetail: React.FC<ConsultDetailProps> = forwardRef<ModalFuncType, Co
         okText={(detailStatus === 'add' ? '新增' : '更新')}
         cancelText='取消'
         open={isModalOpen}
-        onOk={handleOk}
+        onOk={() => handleOk(curStatus)}
         onCancel={handleCancel}
         forceRender>
         <Form
@@ -100,7 +130,7 @@ const ConsultDetail: React.FC<ConsultDetailProps> = forwardRef<ModalFuncType, Co
           <Form.Item
             label="标题"
             name="title"
-            rules={[{ required: true, message: 'Please input your username!' }]}
+            rules={[{ required: true, message: '请输入咨询标题' }]}
             initialValue={formList.title}
           >
             <Input onChange={handleChange} />
@@ -109,7 +139,7 @@ const ConsultDetail: React.FC<ConsultDetailProps> = forwardRef<ModalFuncType, Co
           <Form.Item
             label="类型"
             name="type"
-            rules={[{ required: true, message: 'Please input your password!' }]}
+            rules={[{ required: true, message: '请选择咨询类型' }]}
             initialValue={formList.type}
           >
             <Select
@@ -130,7 +160,7 @@ const ConsultDetail: React.FC<ConsultDetailProps> = forwardRef<ModalFuncType, Co
             label="内容"
             name="content"
             initialValue={formList.content}
-            rules={[{ required: true, message: 'Please input your username!' }]}
+            rules={[{ required: true, message: '请填写咨询内容' }]}
           >
             <TextArea rows={4} maxLength={200} showCount onChange={contentChange} />
           </Form.Item>

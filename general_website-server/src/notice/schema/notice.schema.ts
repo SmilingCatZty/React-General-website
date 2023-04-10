@@ -16,6 +16,12 @@ export class Notice {
 
   @Prop()
   content: string;
+
+  @Prop()
+  createTime: number;
+
+  @Prop()
+  view: number; // 当前访问人数，用于统计热点话题
 }
 
 export const NoticeSchema = SchemaFactory.createForClass(Notice);

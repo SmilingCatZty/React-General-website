@@ -10,21 +10,28 @@ export class NoticeService {
     private NoticeModel: Model<NoticeDocument>,
   ) {}
 
-  async create(title: string, type: string, content: string): Promise<Notice> {
+  async create(
+    title: string,
+    type: string,
+    content: string,
+    createTime: number,
+  ): Promise<Notice> {
     const createNotice = new this.NoticeModel({
       title,
       type,
       content,
+      createTime,
+      view: 0,
     });
     return createNotice.save();
   }
 
-  async findAll({ size, page }, params): Promise<Notice[]> {
+  async findAll({ size, page }, params, view?: any): Promise<Notice[]> {
     return this.NoticeModel.find({
       type: new RegExp(params.type),
       title: new RegExp(params.title),
     })
-      .sort({ createdAt: -1 })
+      .sort(view ? { view: -1 } : { createdAt: -1 })
       .skip(size * (page - 1))
       .limit(size)
       .exec();

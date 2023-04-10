@@ -1,9 +1,10 @@
 type ConsultInfoModel = {
   _id?: number
-  title: string
-  type: string
+  title?: string
+  type?: string
   img?: string
   content?: string
+  createTime?: number
 }
 
 interface CommonModal {

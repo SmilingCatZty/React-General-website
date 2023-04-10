@@ -1,22 +1,22 @@
-import { Type } from 'class-transformer';
-import { IsNumber, IsObject } from 'class-validator';
-
-type pageInfoObj = {
-  title?: string;
-  type?: string;
-  content?: string;
-  img?: string;
-};
+import { IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class CreateNoticeDto {
-  @IsObject()
-  info: pageInfoObj;
+  @IsString()
+  @IsOptional()
+  title: string;
+
+  @IsString()
+  @IsOptional()
+  type: string;
+
+  @IsString()
+  @IsOptional()
+  content: string;
+
+  @IsString()
+  @IsOptional()
+  img: string;
 
   @IsNumber()
-  @Type(() => Number)
-  page = 1;
-
-  @IsNumber()
-  @Type(() => Number)
-  size = 10;
+  createTime: number;
 }

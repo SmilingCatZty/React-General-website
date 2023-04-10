@@ -21,7 +21,28 @@ const api = {
       data: {
         ...params
       }
+    }),
+
+  // 添加咨询
+  addConsultInfo: (params: ConsultInfoModel) =>
+    axios({
+      method: 'post',
+      url: '/notice/add',
+      data: {
+        ...params
+      }
+    }),
+
+  // 获取资讯主页信息
+  getNewsInfo: (params?: string) => {
+    axios({
+      method: 'get',
+      url: '/news/list',
+      data: {
+        params
+      }
     })
+  }
 }
 
 export default api

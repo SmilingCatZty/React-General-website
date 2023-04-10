@@ -79,7 +79,6 @@ const CommunityPage = () => {
 
   const location = useLocation()
   const { pathname } = { ...location }
-  console.log(useLocation());
 
   return (
     <div className='homeCommunity'>

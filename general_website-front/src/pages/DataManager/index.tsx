@@ -30,6 +30,7 @@ const items: MenuItem[] = [
   ]),
   getItem('资讯管理', 'sub2', <AppstoreOutlined />, [
     getItem('咨询列表', 'consult'),
+    getItem('新活动预告', 'activity-forecast'),
   ]),
   getItem('社区管理', 'sub4', <SettingOutlined />, [
     getItem('社区帖子管理', 'post'),
