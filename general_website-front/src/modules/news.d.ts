@@ -3,7 +3,7 @@ interface NewsInfoModal {
   background: string
   newActive:NewsActiveModal
   hotList: NewsHotModal[]
-  allNews: NewsAllItemModal[]
+  // allNews: NewsAllItemModal[]
 }
 
 interface NewsHotModal {

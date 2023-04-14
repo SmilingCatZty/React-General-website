@@ -13,11 +13,19 @@ interface CommonModal {
 }
 
 interface RequestGetInfoListModel extends CommonModal {
-  info:ConsultInfoModel
+  info: ConsultInfoModel
   // title?: string
   // type?: string
   // img?: string
   // content?: string
 }
 
-export { ConsultInfoModel,RequestGetInfoListModel }
+interface ForecastInfoModal {
+  _id?: string
+  title: string
+  content: string
+  img: string
+  startTime: any
+}
+
+export { ConsultInfoModel, RequestGetInfoListModel, ForecastInfoModal }

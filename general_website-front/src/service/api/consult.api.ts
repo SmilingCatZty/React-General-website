@@ -1,5 +1,5 @@
 import axios from '../request'
-import { ConsultInfoModel, RequestGetInfoListModel } from '@/modules/data-manager/consult'
+import { ConsultInfoModel, RequestGetInfoListModel, ForecastInfoModal } from '@/modules/data-manager/consult'
 
 const api = {
   // 获取资讯列表
@@ -40,6 +40,26 @@ const api = {
       url: '/news/list',
       data: {
         params
+      }
+    })
+  },
+
+  // 获取活动预告
+  getActivityForecast: () => {
+    return axios({
+      method: 'get',
+      url: '/forecast/list'
+    })
+  },
+
+  // 更新活动预告
+  updateActivityForecast: (_id: string, params: ForecastInfoModal) => {
+    return axios({
+      method: 'put',
+      url: '/forecast/update',
+      data: {
+        _id,
+        info: { ...params }
       }
     })
   }

@@ -9,7 +9,7 @@ const HomeCommunity = lazy(() => import('@/pages/Community/index'))
 const CommunityDetail = lazy(() => import('@/pages/Community/detail'))
 const DataAnalysis = lazy(() => import('@/pages/DataManager/index'))
 const DataManagerConsult = lazy(() => import('@/pages/DataManager/components/consult/index'))
-const DataManagerActivityForecast = lazy(() => import('@/pages/DataManager/components/consult/activityForecast'))
+const DataManagerForecast = lazy(() => import('@/pages/DataManager/components/consult/forecast'))
 
 const WithLodingComponents = (component: JSX.Element) => (
   <React.Suspense fallback={<div>loading...</div>}>
@@ -61,7 +61,7 @@ const routerConfig = [
           },
           {
             path: 'activity-forecast',
-            element: WithLodingComponents(<DataManagerActivityForecast />)
+            element: WithLodingComponents(<DataManagerForecast />)
           }
         ]
       }

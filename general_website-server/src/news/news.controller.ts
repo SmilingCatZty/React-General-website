@@ -8,12 +8,14 @@ import {
 import { NewsService } from './news.service';
 import { CreateNewsDto } from './dto/create-news.dto';
 import { NoticeService } from '../notice/notice.service';
+import { ForecastService } from '../forecast/forecast-service';
 
 @Controller('news')
 export class NewsController {
   constructor(
     private readonly newsService: NewsService,
     private readonly noticeService: NoticeService,
+    private readonly forecastService: ForecastService,
   ) {}
 
   @Post('create')
@@ -34,6 +36,7 @@ export class NewsController {
     try {
       const params = {};
       const news = await this.newsService.list();
+      const forecast = await this.forecastService.getList();
       const notice = await this.noticeService.findAll(
         { page: 1, size: 5 },
         params,
@@ -44,6 +47,7 @@ export class NewsController {
       return {
         news: news[0],
         hotList: notice,
+        forecast: forecast[0],
       };
     } catch (error) {
       throw new InternalServerErrorException(error.msg);

@@ -29,14 +29,15 @@ const newsList: NewsInfoModal = {
     { id: '4', title: '热点4', img: '', describe: '描述4描述4描述4描述4描述4描述4描述4', detailDescription: '', time: 1679307224 },
     { id: '5', title: '热点5', img: '', describe: '描述5描述5描述5描述5描述5描述5描述5', detailDescription: '', time: 1679307224 }
   ],
-  allNews: [
-    { key: 'latestList', title: '最新' },
+}
+
+const newsTypeList = [
+  { key: 'latestList', title: '最新' },
     { key: 'newsList', title: '新闻' },
     { key: 'noticeList', title: '通知' },
     { key: 'activeList', title: '活动' },
     { key: 'otherList', title: '其他' },
-  ]
-}
+]
 
 const consultList = [
   { title: '活动1', img: '', time: 1678604591983 },
@@ -93,7 +94,7 @@ const NewsPage = () => {
       <div className='news-info'>
         <div className="info-tabs">
           {
-            newsList.allNews.map((item) => {
+            newsTypeList.map((item) => {
               return (
                 <Button className='tabs-btn' key={item.key} size='large'>{item.title}</Button>
               )
