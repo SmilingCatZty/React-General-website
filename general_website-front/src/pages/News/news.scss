@@ -48,19 +48,21 @@
 
         .content-title {
           text-align: center;
+          margin-top: 8px;
         }
 
         .content-describe {
           padding: 0 10px;
+          margin: 10px 0px;
           line-height: 15px;
           text-align: center;
           display: none;
         }
 
         .content-time {
-          bottom: 0;
           font-size: 12px;
           padding-left: 10px;
+          padding-bottom: 10px;
         }
       }
     }
@@ -170,7 +172,8 @@
             display: inline-block;
 
             .contain-title {
-              font-size: 24px;
+              font-size: 28px;
+              font-weight: 400;
             }
 
             .contain-time {

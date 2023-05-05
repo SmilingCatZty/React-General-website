@@ -19,8 +19,9 @@ const initialForm: ForecastInfoModal = {
 
 const ConsultActivityForecast: React.FC = () => {
   const [form] = Form.useForm()
-  let [formList, setFormList] = useState<ForecastInfoModal>(initialForm)
+  let [formList, setFormList] = useState<ForecastInfoModal>(initialForm) // 表单内容
 
+  // 更新操作
   const update = async () => {
     const { _id, title, content, img, startTime } = { ...formList }
     const params = {
@@ -43,19 +44,26 @@ const ConsultActivityForecast: React.FC = () => {
     }
   }
 
-  const handleChange = (event: any) => {
+  // 监听标题改变
+  const handleTitleChange = (event: any) => {
     formList.title = event.target.value
     setFormList(formList)
   }
 
+  // 监听图片改变
+  const handleImgChange = (event: any) => {
+    formList.img = event.target.value
+    setFormList(formList)
+  }
+
+  // 监听内容改变
   const contentChange = (v: any) => {
     formList.content = v.target.value
     setFormList(formList)
   }
 
+  // 日期处理
   const dateHandle = (value: any, dateString: any,) => {
-    console.log('Formatted Selected Time: ', dateString);
-    console.log(dayjs(dateString).unix());
     formList.startTime = dateString
     setFormList(formList)
   }
@@ -64,10 +72,10 @@ const ConsultActivityForecast: React.FC = () => {
     console.log('onOk: ', formList);
   }
 
+  // 获取预告信息
   const getList = async () => {
     try {
       const res: any = await api.getActivityForecast()
-      console.log('res', res);
       if (res && res.status === 200) {
         formList = { ...res.data.info }
         formList.startTime = dayjs(formList.startTime)
@@ -105,7 +113,7 @@ const ConsultActivityForecast: React.FC = () => {
           rules={[{ required: true, message: '请输入咨询标题' }]}
           initialValue={formList.title}
         >
-          <Input onChange={handleChange} />
+          <Input onChange={handleTitleChange} />
         </Form.Item>
 
         <Form.Item
@@ -122,7 +130,7 @@ const ConsultActivityForecast: React.FC = () => {
           rules={[{ required: true, message: '请输入配图' }]}
           initialValue={formList.img}
         >
-          <Input onChange={handleChange} />
+          <Input onChange={handleImgChange} />
         </Form.Item>
         {/* <Form.Item
             label="配图"

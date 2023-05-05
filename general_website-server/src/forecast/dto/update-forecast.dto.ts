@@ -1,11 +1,11 @@
 type ForecastInfoModel = {
   title: string;
-  img?: string;
+  img: string;
   content: string;
   startTime: number;
 };
 
-export class UpdateForecast {
+export class UpdateForecastDto {
   _id: string;
   info: ForecastInfoModel;
 }

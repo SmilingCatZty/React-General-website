@@ -35,7 +35,7 @@ const api = {
 
   // 获取资讯主页信息
   getNewsInfo: (params?: string) => {
-    axios({
+    return axios({
       method: 'get',
       url: '/news/list',
       data: {

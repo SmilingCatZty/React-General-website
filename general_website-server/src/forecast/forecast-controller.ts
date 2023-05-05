@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Post, Put } from '@nestjs/common';
 import { CreateForecastDto } from './dto/create-forecast.dto';
 import { ForecastService } from './forecast-service';
-import { UpdateExampleDto } from 'src/Example/dto/update-example.dto';
+import { UpdateForecastDto } from 'src/forecast/dto/update-forecast.dto';
 
 @Controller('forecast')
 export class ForecastController {
@@ -19,8 +19,8 @@ export class ForecastController {
   }
 
   @Put('update')
-  async update(@Body() updateExampleDto: UpdateExampleDto) {
-    const { _id, info } = { ...updateExampleDto };
+  async update(@Body() updateForecastDto: UpdateForecastDto) {
+    const { _id, info } = { ...updateForecastDto };
     const forecast = await this.forecastService.update({ _id }, info);
     return forecast;
   }

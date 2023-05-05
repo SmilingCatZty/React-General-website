@@ -16,6 +16,9 @@ export class Forecast {
 
   @Prop()
   startTime: number;
+
+  @Prop()
+  img: string;
 }
 
 export const ForecastSchema = SchemaFactory.createForClass(Forecast);
