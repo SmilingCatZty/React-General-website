@@ -1,6 +1,6 @@
 import React from 'react'
 import '../styles/board.scss'
-import { HomeBoardModal } from '@/modules/home'
+import { HomeBoardInfoModal, HomeMainInfoModal } from '@/modules/home/home'
 import { Tabs } from 'antd';
 import { List } from 'antd';
 import Swiper from '@/components/Swiper/index'
@@ -10,50 +10,36 @@ import { useNavigate } from 'react-router-dom';
 
 
 interface BoardProps {
-  boardInfo: HomeBoardModal
+  boardInfo: HomeBoardInfoModal
+  homeInfo: HomeMainInfoModal
 }
 
+// 轮播图列表
 const swiperList: SwiperImgListModal[] = [
   { imgId: nanoid(), imgTitle: '图片1', imgPath: '' },
   { imgId: nanoid(), imgTitle: '图片2', imgPath: '' },
   { imgId: nanoid(), imgTitle: '图片3', imgPath: '' },
   { imgId: nanoid(), imgTitle: '图片4', imgPath: '' },
 ]
-
-// const tabList: TabsProps['items'] = [
-//   {
-//     key: '1',
-//     label: `Tab 1`,
-//     children: (
-//       <div>123</div>
-//     ),
-//   },
-//   {
-//     key: '2',
-//     label: `Tab 2`,
-//     children: `Content of Tab Pane 2`,
-//   },
-//   {
-//     key: '3',
-//     label: `Tab 3`,
-//     children: `Content of Tab Pane 3`,
-//   },
-// ]
+// 资讯类型
+const consultTypes = new Map([['newsList', '新闻'], ['activeList', '活动'], ['noticeList', '通知'], ['otherList', '其他']])
 
 const onChange = (v: any) => {
-  console.log('boardProp');
+  // console.log('boardProp');
 }
 
 const HomeBoard: React.FC<BoardProps> = (props) => {
+  const { boardInfo, homeInfo } = props
   const navigateTo = useNavigate()
 
+  // 查看全部资讯
   const showMore = () => {
     navigateTo('/home/news')
   }
 
   return (
-    <div className='home-board' style={{ backgroundImage: `url(${props.boardInfo.background})` }}>
-      <h1 className='board-title'>{props.boardInfo.title}</h1>
+    <div className='home-board' style={{ backgroundImage: `url(${homeInfo.boardBackground})` }}>
+      <h1 className='board-title'>{homeInfo.boardTitle}</h1>
       <div className='board-main'>
         <div className='main-left'>
           <Swiper s_list={swiperList} />
@@ -63,23 +49,23 @@ const HomeBoard: React.FC<BoardProps> = (props) => {
 
             <Tabs defaultActiveKey='1'
               items={
-                Object.keys(props.boardInfo.boardList).map((item, i) => {
+                Object.keys(boardInfo).map((item, i) => {
                   const str = item as string;
-                  const list = props.boardInfo.boardList[str as keyof typeof props.boardInfo.boardList]
+                  const list = boardInfo[str as keyof typeof boardInfo] // 本质等于obj[i]，但由于ts语法问题，只能用该种方式实现
 
                   return {
                     key: item,
-                    label: item,
+                    label: consultTypes.get(item),
                     children:
                       (
                         <div className='main-tabs_list'>
                           < List
-                            // grid={{
-                            //   column:1,
-                            //   // gutter:10
-                            // }}
+                            grid={{
+                              column: 1,
+                              // gutter:10
+                            }}
                             split={true}
-                            size='default'
+                            size='large'
                             dataSource={list}
                             renderItem={(item) =>
                               <List.Item>
@@ -87,7 +73,6 @@ const HomeBoard: React.FC<BoardProps> = (props) => {
                               </List.Item>
                             }
                           />
-
                         </div>
                       )
                   }

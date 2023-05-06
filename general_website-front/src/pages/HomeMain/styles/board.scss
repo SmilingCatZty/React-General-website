@@ -64,6 +64,16 @@
 
           .ant-tabs-nav-wrap {
             flex: inherit;
+
+            .ant-tabs-nav-list {
+              .ant-tabs-tab {
+                font-size: 20px;
+              }
+
+              .ant-tabs-tab-active {
+                color: red !important;
+              }
+            }
           }
         }
 
@@ -73,13 +83,14 @@
 
           .ant-list {
             height: 100%;
-            
+
 
             .ant-list-item {
               overflow: hidden;
               white-space: nowrap;
               text-overflow: ellipsis;
               color: #cdc5c5;
+              font-size: 20px;
               // border-bottom: 1px solid blue;
             }
           }
@@ -90,9 +101,10 @@
         position: absolute;
         right: 0;
         line-height: 5px;
-        padding-right:20px;
+        padding-right: 20px;
       }
-      .main-more:hover{
+
+      .main-more:hover {
         cursor: pointer;
       }
     }

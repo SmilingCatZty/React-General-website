@@ -1,16 +1,17 @@
 import React from 'react'
 import '../styles/main.scss'
-import { HomeMainModal } from '@/modules/home'
+import { HomeMainInfoModal } from '@/modules/home/home'
 import {
   PlayCircleFilled
 } from '@ant-design/icons';
 
 interface MainProps {
-  mainInfo: HomeMainModal
+  mainInfo: HomeMainInfoModal
 }
 
 const HomeMain: React.FC<MainProps> = (props) => {
   const { mainInfo } = { ...props }
+
   return (
     <div className='home-main' style={{ backgroundImage: `url(${mainInfo.background})` }}>
       {/* 内容部分 */}
