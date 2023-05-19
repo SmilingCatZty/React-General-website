@@ -4,7 +4,7 @@ import type { ColumnsType } from 'antd/es/table'
 import ConsultDetail from './detail'
 import './styles/index.scss'
 import { ConsultInfoModel } from '@/modules/data-manager/consult'
-import api from '@/service/api/consult.api'
+import api from '@/service/api/consult/consult.api'
 
 const { Option } = Select
 

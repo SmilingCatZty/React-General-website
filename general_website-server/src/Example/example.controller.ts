@@ -9,6 +9,7 @@ import {
   InternalServerErrorException,
   Post,
   Put,
+  Res,
 } from '@nestjs/common';
 import { ExampleService } from './example.service';
 import { CreateExampleDto } from './dto/create-example.dto';
@@ -40,12 +41,20 @@ export class ExampleController {
   }
 
   @Post('add')
-  async create(@Body() createExampleDto: CreateExampleDto) {
+  async create(
+    @Body() createExampleDto: CreateExampleDto,
+    /**
+     * @Res
+     * @description 装饰器可以将响应对象注入到控制器方法中，从而可以使用它来设置响应信息）
+     */
+    @Res() res,
+  ) {
     try {
       const example = await this.exampleService.create(
         createExampleDto.id,
         createExampleDto.auth,
       );
+      res.status(200).send('Hello World!');
       return example;
     } catch (err) {
       /**

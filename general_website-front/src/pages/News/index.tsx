@@ -3,7 +3,7 @@ import { Statistic, Button } from 'antd'
 import './news.scss'
 import MyFooter from '@/components/Footer/index'
 import dayjs from 'dayjs'
-import api from '@/service/api/consult.api'
+import api from '@/service/api/consult/consult.api'
 import { NewsForecastInfoModal, NewsBasicInfoModal, NewsConsultInfoModal } from '@/modules/news/news'
 
 const { Countdown } = Statistic;

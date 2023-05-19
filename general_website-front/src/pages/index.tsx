@@ -1,16 +1,23 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Outlet } from 'react-router-dom';
-import { Avatar } from 'antd';
+import { Avatar, Popover } from 'antd';
 import { HomeOutlined, MailOutlined, UserOutlined, AlibabaOutlined, LineChartOutlined, PushpinOutlined } from '@ant-design/icons';
 import './home.scss'
 import Navigation from '@/components/Navigate/index';
 import { NavigateInfoModal } from '@/components/Navigate/navigate'
+import LoginPopUp from '@/pages/Login/index'
+
+interface ModalFuncType {
+  showModal: () => void
+  closeModal: () => void
+}
 
 const HomePage: React.FC = () => {
+  let loginRef = useRef<ModalFuncType>(null)
 
   const navList: NavigateInfoModal = {
     defaultNav: 'data-analysis',
-    webLogo: '',
+    webLogo: 'https://webimages.mongodb.com/_com_assets/cms/kuyjf3vea2hg34taa-horizontal_default_slate_blue.svg?auto=format%252Ccompress',
     userAvatar: '',
     menuList: [
       {
@@ -51,7 +58,10 @@ const HomePage: React.FC = () => {
       //   key: 'home-area',
       // },
     ]
-
+  }
+  const personalhandler = () => {
+    console.log('头像点击');
+    loginRef.current?.showModal()
   }
 
   return (
@@ -63,15 +73,24 @@ const HomePage: React.FC = () => {
         <div className='nav-navigation'>
           <Navigation navList={navList} />
         </div>
-        <div className='nav-personal'>
-          <div className='personal-avatar'>
-
-            <Avatar size={52} src={navList.userAvatar} icon={<UserOutlined />} />
+        <Popover content={() =>
+        (
+          <div>
+            <div>个人中心</div>
+            <div>退出登录</div>
           </div>
-        </div>
+        )
+        } title="Title">
+          <div className='nav-personal' onClick={() => personalhandler()}>
+            <div className='personal-avatar'>
+              <Avatar size={52} src={navList.userAvatar} icon={<UserOutlined />} />
+            </div>
+          </div>
+        </Popover>
       </div>
+      <LoginPopUp ref={loginRef} />
       <Outlet />
-    </div>
+    </div >
   );
 };
 

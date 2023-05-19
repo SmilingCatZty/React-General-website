@@ -10,6 +10,8 @@ const CommunityDetail = lazy(() => import('@/pages/Community/detail'))
 const DataAnalysis = lazy(() => import('@/pages/DataManager/index'))
 const DataManagerConsult = lazy(() => import('@/pages/DataManager/components/consult/index'))
 const DataManagerForecast = lazy(() => import('@/pages/DataManager/components/consult/forecast'))
+const DataManagerAnalyse = lazy(() => import('@/pages/DataManager/components/analyze/index'))
+const Register = lazy(() => import('@/pages/Register/index'))
 
 const WithLodingComponents = (component: JSX.Element) => (
   <React.Suspense fallback={<div>loading...</div>}>
@@ -56,6 +58,10 @@ const routerConfig = [
         element: WithLodingComponents(<DataAnalysis />),
         children: [
           {
+            path: 'analyse',
+            element: WithLodingComponents(<DataManagerAnalyse />)
+          },
+          {
             path: 'consult',
             element: WithLodingComponents(<DataManagerConsult />)
           },
@@ -68,6 +74,10 @@ const routerConfig = [
       // HomeNews
     ]
   },
+  {
+    path: '/register',
+    element: WithLodingComponents(<Register />)
+  }
 ]
 
 export default routerConfig

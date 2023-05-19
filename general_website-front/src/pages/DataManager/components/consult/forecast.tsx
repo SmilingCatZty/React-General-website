@@ -4,7 +4,7 @@ import type { DatePickerProps, RangePickerProps } from 'antd/es/date-picker';
 import './styles/forecast.scss'
 import locale from 'antd/es/date-picker/locale/en_US';
 import TextArea from 'antd/es/input/TextArea';
-import api from '@/service/api/consult.api'
+import api from '@/service/api/consult/consult.api'
 import { ForecastInfoModal } from '@/modules/data-manager/consult'
 import dayjs from 'dayjs';
 

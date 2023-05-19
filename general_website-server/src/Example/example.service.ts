@@ -25,9 +25,10 @@ export class ExampleService {
 
   async findAll(page: number, size: number): Promise<Example[]> {
     return this.ExampleModel.find()
-      .sort({ createdAt: -1 })
-      .skip(size * (page - 1))
-      .limit(size)
+      .sort({ createdAt: -1 }) // 根据createdAt排序
+      .skip(size * (page - 1)) // 分页
+      .limit(size) // 数量限制
+      .select('-_id') // 删除数据库返回的_id字段
       .exec();
   }
 

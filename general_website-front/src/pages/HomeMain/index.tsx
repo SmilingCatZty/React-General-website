@@ -4,7 +4,7 @@ import Board from './components/board'
 import Area from './components/area'
 import MyFooter from '@/components/Footer/index'
 import { HomeMainInfoModal, HomeAreaInfoModal, HomeBoardInfoModal } from '@/modules/home/home'
-import api from '@/service/api/home.api'
+import api from '@/service/api/home/home.api'
 
 
 const HomeMain = () => {

@@ -9,6 +9,7 @@ import { NewsModule } from './news/news.module';
 import { ForecastModule } from './forecast/forecast-module';
 import { HomeModule } from './home/home-module';
 import { HomeAreaModule } from './homeArea/homeArea-module';
+import { UserModule } from './user/user.module';
 
 @Module({
   // 导入模块
@@ -24,6 +25,7 @@ import { HomeAreaModule } from './homeArea/homeArea-module';
     ForecastModule,
     HomeModule,
     HomeAreaModule,
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],

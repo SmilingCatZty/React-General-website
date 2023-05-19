@@ -1,4 +1,4 @@
-import axios from '../request'
+import axios from '../../request'
 
 const api = {
   // 获取首页信息

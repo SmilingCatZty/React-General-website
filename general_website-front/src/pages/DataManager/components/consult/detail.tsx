@@ -4,7 +4,7 @@ import { Form, Input, Select, Modal } from 'antd';
 import './styles/detail.scss'
 import TextArea from 'antd/es/input/TextArea';
 import { ConsultInfoModel } from '@/modules/data-manager/consult'
-import api from '@/service/api/consult.api'
+import api from '@/service/api/consult/consult.api'
 import dayjs from 'dayjs';
 
 

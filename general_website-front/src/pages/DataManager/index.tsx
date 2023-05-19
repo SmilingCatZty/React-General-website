@@ -75,7 +75,7 @@ const DataAnalysis: React.FC = () => {
         break
     }
     // setOpenItemKey(v.key)
-    if (v.key !== 'analyse') {
+    if (v.key !== 'person') {
       navigateTo(v.key)
     } else {
       navigateTo('/home/data-manager')

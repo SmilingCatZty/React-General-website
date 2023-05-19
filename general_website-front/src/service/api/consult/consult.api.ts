@@ -1,4 +1,4 @@
-import axios from '../request'
+import axios from '../../request'
 import { ConsultInfoModel, RequestGetInfoListModel, ForecastInfoModal } from '@/modules/data-manager/consult'
 
 const api = {
