@@ -1,83 +1,25 @@
-import React, { lazy } from 'react'
+import React from 'react'
 import { Navigate } from 'react-router-dom'
-
-const DisplayPage = lazy(() => import('@/pages/Display/index'))
-const Home = lazy(() => import('@/pages/index'))
-const HomeMain = lazy(() => import('@/pages/HomeMain'))
-const HomeNews = lazy(() => import('@/pages/News'))
-const HomeCommunity = lazy(() => import('@/pages/Community/index'))
-const CommunityDetail = lazy(() => import('@/pages/Community/detail'))
-const DataAnalysis = lazy(() => import('@/pages/DataManager/index'))
-const DataManagerConsult = lazy(() => import('@/pages/DataManager/components/consult/index'))
-const DataManagerForecast = lazy(() => import('@/pages/DataManager/components/consult/forecast'))
-const DataManagerAnalyse = lazy(() => import('@/pages/DataManager/components/analyze/index'))
-const Register = lazy(() => import('@/pages/Register/index'))
-
-const WithLodingComponents = (component: JSX.Element) => (
-  <React.Suspense fallback={<div>loading...</div>}>
-    {component}
-  </React.Suspense>
-)
+// const routers = import.meta.globEager("./modules/*.tsx") { 该方法暂时用不了，会报meta上没有globEager方法 }
+import displayRouter from './modules/display'
+import errorRouter from './modules/error'
+import homeRouter from './modules/home'
+import registRouter from './modules/register'
 
 const routerConfig = [
+  // { path: 'home', element: <Home /> }
   {
     path: '/',
     element: <Navigate to='/home/community' />
   },
-  {
-    path: '/display',
-    element: WithLodingComponents(<DisplayPage />)
-  },
-  // 正常写法
-  // { path: 'home', element: <Home /> }
-  // 懒加载写法
-  {
-    path: '/home',
-    element: WithLodingComponents(<Home />),
-    children: [
-      {
-        path: 'main',
-        element: WithLodingComponents(< HomeMain />)
-      },
-      {
-        path: 'news',
-        element: WithLodingComponents(< HomeNews />)
-      },
-      {
-        path: 'community',
-        element: WithLodingComponents(<HomeCommunity />),
-        children: [
-          {
-            path: 'post-detail',
-            element: WithLodingComponents(<CommunityDetail />)
-          }
-        ]
-      },
-      {
-        path: 'data-manager',
-        element: WithLodingComponents(<DataAnalysis />),
-        children: [
-          {
-            path: 'analyse',
-            element: WithLodingComponents(<DataManagerAnalyse />)
-          },
-          {
-            path: 'consult',
-            element: WithLodingComponents(<DataManagerConsult />)
-          },
-          {
-            path: 'activity-forecast',
-            element: WithLodingComponents(<DataManagerForecast />)
-          }
-        ]
-      }
-      // HomeNews
-    ]
-  },
-  {
-    path: '/register',
-    element: WithLodingComponents(<Register />)
-  }
+  // 展示页
+  ...displayRouter,
+  // 首页
+  ...homeRouter,
+  // 错误页
+  ...errorRouter,
+  // 注册页
+  ...registRouter
 ]
 
 export default routerConfig
