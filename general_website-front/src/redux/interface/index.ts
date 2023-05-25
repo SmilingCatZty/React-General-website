@@ -6,6 +6,10 @@ export interface AuthState {
 }
 
 export interface UserState {
-  token: string;
-  userInfo: any;
+  token: string
+  userInfo: object
+}
+
+export interface GlobalState {
+  loginStatus: boolean
 }

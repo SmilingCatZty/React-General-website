@@ -3,11 +3,15 @@ import storage from 'redux-persist/lib/storage'
 import { persistStore, persistReducer } from 'redux-persist'
 import reduxThunk from 'redux-thunk'
 import reduxPromise from 'redux-promise'
+import global from './modules/global/reducer'
 import auth from './modules/auth/reducer'
+import user from './modules/user/reducer'
 
 // 拆分 reducer
 const reducers = combineReducers({
-  auth
+  global,
+  auth,
+  user
 })
 
 // redux 持久化配置

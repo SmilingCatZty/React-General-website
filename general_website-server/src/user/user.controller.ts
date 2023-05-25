@@ -43,7 +43,7 @@ export class UserController {
 
       return {
         userInfo: {
-          response,
+          info: response,
           access_token,
         },
       };

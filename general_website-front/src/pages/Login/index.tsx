@@ -9,6 +9,7 @@ import api from '@/service/api/login/index.api'
 
 interface LoginModal {
   ref: any
+  getAccountInfo: (info: any) => void
 }
 
 interface ModalFuncType {
@@ -18,6 +19,8 @@ interface ModalFuncType {
 
 const LoginPopUp: React.FC<LoginModal> = forwardRef<ModalFuncType, LoginModal>((props: LoginModal, ref) => {
 
+  const { getAccountInfo } = { ...props }
+
   useImperativeHandle(ref, () => ({
     showModal,
     closeModal
@@ -25,8 +28,9 @@ const LoginPopUp: React.FC<LoginModal> = forwardRef<ModalFuncType, LoginModal>((
 
 
   let [isShowModal, setIsShowModal] = useState<boolean>(false) // 展示弹窗
-  let account_name: string = ''
-  let account_password: string = ''
+  let [accountName, setAccountName] = useState<string>('') // 账号
+  let [accountPassword, setAccountPassword] = useState<string>('') // 密码
+
   // 打开弹窗
   const showModal = () => {
     setIsShowModal(true)
@@ -37,23 +41,24 @@ const LoginPopUp: React.FC<LoginModal> = forwardRef<ModalFuncType, LoginModal>((
     setIsShowModal(false)
   }
 
+  // 登录
   const loginClick = async () => {
-    const res = api.login(account_name, account_password)
-    if (res) {
-      console.log(res);
+    const res: any = await api.login(accountName, accountPassword)
+    if (res && res.status === 201) {
+      getAccountInfo(res.data.userInfo)
     }
   }
 
   // 账号管理
   const accountHandle = (v: any) => {
-    console.log(v.target.value);
-    account_name = v.target.value
+    accountName = v.target.value
+    setAccountName(accountName)
   }
 
   // 密码管理
   const passwordHandle = (v: any) => {
-    console.log(v.target.value);
-    account_password = v.target.value
+    accountPassword = v.target.value
+    setAccountPassword(accountPassword)
   }
 
   return (

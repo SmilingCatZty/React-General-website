@@ -4,7 +4,6 @@ import type { MenuProps } from 'antd';
 interface NavigateInfoModal {
   defaultNav:string
   webLogo: string
-  userAvatar:string
   menuList: MenuProps['items']
 }
 

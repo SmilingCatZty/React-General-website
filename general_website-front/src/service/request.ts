@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { store } from '@/redux'
 
 // 创建axios实例
 const instance = axios.create({
@@ -14,26 +15,39 @@ const instance = axios.create({
 // 设置请求头
 // instance.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8'
 
-// 添加请求拦截器
+/**
+ * @description 请求拦截器
+ * 客户端发送请求 -> [请求拦截器] -> 服务器
+ * token校验(JWT) : 接受服务器返回的token,存储到redux/本地储存当中
+ */
 axios.interceptors.request.use(
-  // 发请求前的处理
   request => {
+    const token = store.getState().user.token
+    request.headers.Authorization = token
     return request
   },
   // 错误处理
   error => {
-    return error
+    return Promise.reject(error)
   }
 )
-
+/**
+ * @description 响应拦截器
+ *  服务器换返回信息 -> [拦截统一处理] -> 客户端JS获取到信息
+ */
 // 添加响应拦截器
 axios.interceptors.response.use(
   // 响应处理
   response => {
-    return response
+    const { data } = response
+    if (data && data.code === 0) {
+      return response.data.data
+    } else {
+      return Promise.reject(response.data.message)
+    }
   },
   error => {
-    return error
+    return Promise.reject(error)
   }
 )
 
