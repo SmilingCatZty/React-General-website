@@ -42,8 +42,6 @@ export class NewsController {
         params,
         'view',
       );
-      console.log('news', news);
-      console.log('notice', notice);
       return {
         news: news[0],
         hotList: notice,

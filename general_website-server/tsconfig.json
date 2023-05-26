@@ -18,6 +18,7 @@
     "target": "es2017",
     // "target": "ESNext",
     "module": "commonjs",
+    // "project": "./src/*",
     // "module": "ESNext",
     "lib": ["ESNext", "DOM"],
     "esModuleInterop": true

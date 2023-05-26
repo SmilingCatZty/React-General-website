@@ -39,7 +39,6 @@ export class UserService {
   // 登录
   async login({ account_name, account_password }) {
     const user = await this.userModule.findOne({ account_name }).lean().exec();
-    console.log('user', user);
     switch (true) {
       case !user:
         throw new ForbiddenException('登录失败，请检查您的用户名和密码');

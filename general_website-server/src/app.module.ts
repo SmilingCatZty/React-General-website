@@ -3,13 +3,13 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ExampleModule } from './Example/example.module';
-import { NoticeModule } from './notice/notice.modules';
+import { NoticeModule } from './table/notice/notice.modules';
 // import { ConsultModule } from './consult/news.module';
-import { NewsModule } from './news/news.module';
-import { ForecastModule } from './forecast/forecast-module';
-import { HomeModule } from './home/home-module';
-import { HomeAreaModule } from './homeArea/homeArea-module';
-import { UserModule } from './user/user.module';
+import { NewsModule } from './table/news/news.module';
+import { ForecastModule } from './table/forecast/forecast-module';
+import { HomeModule } from './table/home/home-module';
+import { HomeAreaModule } from './table/homeArea/homeArea-module';
+import { UserModule } from './table/user/user.module';
 
 @Module({
   // 导入模块

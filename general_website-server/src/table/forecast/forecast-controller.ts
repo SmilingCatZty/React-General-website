@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Post, Put } from '@nestjs/common';
 import { CreateForecastDto } from './dto/create-forecast.dto';
 import { ForecastService } from './forecast-service';
-import { UpdateForecastDto } from 'src/forecast/dto/update-forecast.dto';
+import { UpdateForecastDto } from 'src/table/forecast/dto/update-forecast.dto';
 
 @Controller('forecast')
 export class ForecastController {
