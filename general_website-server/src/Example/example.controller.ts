@@ -4,16 +4,34 @@
  */
 import {
   Body,
+  ClassSerializerInterceptor,
   Controller,
   Get,
   InternalServerErrorException,
   Post,
   Put,
   Res,
+  UseInterceptors,
 } from '@nestjs/common';
 import { ExampleService } from './example.service';
 import { CreateExampleDto } from './dto/create-example.dto';
 import { UpdateExampleDto } from './dto/update-example.dto';
+import { Exclude } from 'class-transformer';
+import { IsOptional } from 'class-validator';
+import { Example } from './schema/example.schema';
+
+export class UserEntity {
+  auth: boolean;
+  id: string;
+
+  @Exclude()
+  @IsOptional()
+  _id?: string;
+
+  constructor(partial: Partial<UserEntity>) {
+    Object.assign(this, partial);
+  }
+}
 
 @Controller('example')
 export class ExampleController {
@@ -28,6 +46,22 @@ export class ExampleController {
     } catch (error) {
       throw new InternalServerErrorException(error.msg);
     }
+  }
+
+  /**
+   * @description 序列化
+   * @returns object:Example
+   */
+  @UseInterceptors(ClassSerializerInterceptor)
+  @Get('find')
+  async findOne(): Promise<Example> {
+    const example = await this.exampleService.findOne();
+    console.log('example', { ...example });
+
+    const a = JSON.parse(JSON.stringify(example));
+    const b = new Example(a);
+    console.log('a', { ...a });
+    return b;
   }
 
   @Put('update')

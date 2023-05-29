@@ -2,7 +2,6 @@ import { InjectModel } from '@nestjs/mongoose';
 import { ForecastDocument, Forecast } from './schema/forecast.schema';
 import { Model } from 'mongoose';
 import { Injectable } from '@nestjs/common';
-import { ClearUselessPropertie } from '../../decretors/global.dec';
 
 @Injectable()
 export class ForecastService {
@@ -26,9 +25,9 @@ export class ForecastService {
     return forecast.save();
   }
 
-  @ClearUselessPropertie
-  async getList(): Promise<Forecast[]> {
-    return this.ForecastModel.find();
+  async getList(): Promise<Forecast> {
+    const forecast = await this.ForecastModel.findOne();
+    return forecast;
   }
 
   async update({ _id }, params): Promise<Forecast> {

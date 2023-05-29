@@ -20,7 +20,6 @@ export class NoticeController {
   @Get('list')
   async get(@Query() listNoticeDto: ListNoticeDto, @Req() req) {
     const { size, page, info } = listNoticeDto;
-    console.log(req.query);
     try {
       const total = await this.noticeService.total(info);
       const notice = await this.noticeService.findAll({ page, size }, info);

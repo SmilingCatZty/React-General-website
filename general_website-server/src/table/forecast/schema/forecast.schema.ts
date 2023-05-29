@@ -6,7 +6,10 @@ import { HydratedDocument } from 'mongoose';
 
 export type ForecastDocument = HydratedDocument<Forecast>;
 
-@Schema()
+@Schema({
+  versionKey: false,
+  _id: false,
+})
 export class Forecast {
   @Prop()
   title: string;

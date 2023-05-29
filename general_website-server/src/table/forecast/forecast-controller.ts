@@ -27,12 +27,13 @@ export class ForecastController {
 
   @Get('list')
   async getList() {
-    const forecast = await this.forecastService.getList();
-    return {
-      info: forecast[0],
-    };
-    return {
-      info: forecast[0],
-    };
+    try {
+      const forecast = await this.forecastService.getList();
+      return {
+        info: forecast,
+      };
+    } catch (error) {
+      console.log(error);
+    }
   }
 }

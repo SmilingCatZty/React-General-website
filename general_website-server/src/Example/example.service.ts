@@ -12,19 +12,25 @@ export class ExampleService {
   constructor(
     // 使用@InjectModel()装饰器来把Example注入到UsersService中。
     @InjectModel('Example')
-    private ExampleModel: Model<ExampleDocument>,
+    private exampleModel: Model<ExampleDocument>,
   ) {}
 
   async create(id: string, auth: boolean): Promise<Example> {
-    const createNotice = new this.ExampleModel({
+    const createNotice = new this.exampleModel({
       id,
       auth,
     });
     return createNotice.save();
   }
 
+  async findOne(): Promise<Example> {
+    const example = await this.exampleModel.findOne();
+    return example;
+  }
+
   async findAll(page: number, size: number): Promise<Example[]> {
-    return this.ExampleModel.find()
+    return this.exampleModel
+      .find()
       .sort({ createdAt: -1 }) // 根据createdAt排序
       .skip(size * (page - 1)) // 分页
       .limit(size) // 数量限制
@@ -33,6 +39,6 @@ export class ExampleService {
   }
 
   async update(params): Promise<Example[]> {
-    return this.ExampleModel.findByIdAndUpdate(params._id, params.info);
+    return this.exampleModel.findByIdAndUpdate(params._id, params.info);
   }
 }

@@ -5,6 +5,7 @@
 
 import { HydratedDocument } from 'mongoose';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Exclude } from 'class-transformer';
 
 /**
  * @HydratedDocument
@@ -17,13 +18,34 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
 export type ExampleDocument = HydratedDocument<Example>;
 // 创建一个Example对象
-@Schema()
+@Schema({
+  timestamps: true, // 自动加上createdAt 和 updatedAt
+  versionKey: false,
+  _id: false,
+  // toObject: {
+  //   getters: true,
+  //   virtuals: false,
+  // },
+  toJSON: {
+    getters: true,
+    virtuals: false,
+  },
+})
 export class Example {
+  constructor(partial: Partial<Example>) {
+    Object.assign(this, partial);
+  }
   @Prop()
   id: string;
 
   @Prop()
   auth: boolean;
+
+  @Exclude()
+  password: string;
+
+  @Exclude()
+  _id: string;
 }
 
 // 'SchemaFactory.createForClass()' 的作用是通过传入一个类来创建对应的 Mongoose schema。

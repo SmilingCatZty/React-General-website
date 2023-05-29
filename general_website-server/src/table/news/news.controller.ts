@@ -45,7 +45,7 @@ export class NewsController {
       return {
         news: news[0],
         hotList: notice,
-        forecast: forecast[0],
+        forecast: forecast,
       };
     } catch (error) {
       throw new InternalServerErrorException(error.msg);
