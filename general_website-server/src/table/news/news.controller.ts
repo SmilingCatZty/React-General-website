@@ -8,7 +8,7 @@ import {
 import { NewsService } from './news.service';
 import { CreateNewsDto } from './dto/create-news.dto';
 import { NoticeService } from '../notice/notice.service';
-import { ForecastService } from '../forecast/forecast-service';
+import { ForecastService } from '../forecast/forecast.service';
 
 @Controller('news')
 export class NewsController {

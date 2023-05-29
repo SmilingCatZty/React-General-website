@@ -4,7 +4,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { ConsultController } from './consult.controller';
 import { ConsultService } from './consult.service';
 import { NoticeModule } from '../notice/notice.modules';
-import { ForecastModule } from '../forecast/forecast-module';
+import { ForecastModule } from '../forecast/forecast.module';
 
 @Module({
   imports: [

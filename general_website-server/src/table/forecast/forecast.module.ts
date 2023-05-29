@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ForecastSchema, Forecast } from './schema/forecast.schema';
-import { ForecastController } from './forecast-controller';
-import { ForecastService } from './forecast-service';
+import { ForecastController } from './forecast.controller';
+import { ForecastService } from './forecast.service';
 
 @Module({
   imports: [

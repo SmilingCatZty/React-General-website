@@ -8,7 +8,7 @@ import {
 import { ConsultService } from './consult.service';
 import { CreateConsultDto } from './dto/create-consult.dto';
 import { NoticeService } from '../notice/notice.service';
-import { ForecastService } from '../forecast/forecast-service';
+import { ForecastService } from '../forecast/forecast.service';
 
 @Controller('news')
 export class ConsultController {

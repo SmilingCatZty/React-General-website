@@ -6,10 +6,12 @@ import { ExampleModule } from './Example/example.module';
 import { NoticeModule } from './table/notice/notice.modules';
 // import { ConsultModule } from './consult/news.module';
 import { NewsModule } from './table/news/news.module';
-import { ForecastModule } from './table/forecast/forecast-module';
+import { ForecastModule } from './table/forecast/forecast.module';
 import { HomeModule } from './table/home/home-module';
 import { HomeAreaModule } from './table/homeArea/homeArea-module';
 import { UserModule } from './table/user/user.module';
+import { FriendModule } from './table/friend/friend.module';
+import { ChatModule } from './table/chat/chat.moudle';
 
 @Module({
   // 导入模块
@@ -26,6 +28,8 @@ import { UserModule } from './table/user/user.module';
     HomeModule,
     HomeAreaModule,
     UserModule,
+    FriendModule,
+    ChatModule,
   ],
   controllers: [AppController],
   providers: [AppService],

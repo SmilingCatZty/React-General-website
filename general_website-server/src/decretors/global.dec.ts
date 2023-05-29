@@ -1,7 +1,7 @@
 import { createParamDecorator } from '@nestjs/common';
 
 /**
- * @description 用于去除对象中的'_id'和'__v'字段
+ * @description 用于去除对象中的'_id'和'__v'字段,只能用于单一查询
  * @param target 表示被装饰的类实例
  * @param propertyKey 表示被装饰的方法名
  * @param descriptor 表示被装饰的方法的属性描述符

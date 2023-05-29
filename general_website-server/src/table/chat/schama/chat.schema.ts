@@ -7,7 +7,10 @@ import { HydratedDocument } from 'mongoose';
 
 export type ChatDocument = HydratedDocument<Chat>;
 
-@Schema()
+@Schema({
+  // _id: false,
+  versionKey: false,
+})
 export class Chat {
   @Prop()
   sender_id: number; // 发送者id
