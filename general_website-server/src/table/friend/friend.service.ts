@@ -10,14 +10,15 @@ export class FriendService {
   ) {}
 
   async create(
-    user_id: number,
-    friend_id: number,
+    sender_id: number,
+    reciever_id: number,
     status: number,
   ): Promise<Friend> {
     const friend = new this.friendModel({
-      user_id,
-      friend_id,
+      sender_id,
+      reciever_id,
       status,
+      friend_signal: sender_id + '#' + reciever_id,
     });
     return friend.save();
   }

@@ -9,8 +9,8 @@ export class FrinedController {
   @Post('create')
   async create(@Body() createFriendDto: CreateFriendDto) {
     const friend = await this.friendService.create(
-      createFriendDto.user_id,
-      createFriendDto.friend_id,
+      createFriendDto.sender_id,
+      createFriendDto.reciever_id,
       createFriendDto.status,
     );
     return friend;

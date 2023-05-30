@@ -2,6 +2,8 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
+import { WsGateWay } from './websocket/ws.gateway';
+
 import { ExampleModule } from './Example/example.module';
 import { NoticeModule } from './table/notice/notice.modules';
 // import { ConsultModule } from './consult/news.module';
@@ -20,6 +22,7 @@ import { ChatModule } from './table/chat/chat.moudle';
     // MongooseModule.forRootAsync({
     //   imports: [MongooseModule.forRoot('mongodb://general_website:27017')],
     // }),
+    // WebSocketModule, // webSocket
     ExampleModule,
     NoticeModule,
     // ConsultModule,
@@ -32,6 +35,6 @@ import { ChatModule } from './table/chat/chat.moudle';
     ChatModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, WsGateWay],
 })
 export class AppModule {}

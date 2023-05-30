@@ -9,10 +9,13 @@ export type FriendDocument = HydratedDocument<Friend>;
 })
 export class Friend {
   @Prop()
-  user_id: number; // 用户id
+  sender_id: number; // 用户id
 
   @Prop()
-  friend_id: number; // 好友id
+  reciever_id: number; // 好友id
+
+  @Prop()
+  friend_signal: string; // 好友标识
 
   @Prop()
   status: number; // 状态

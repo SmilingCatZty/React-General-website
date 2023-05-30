@@ -1,9 +1,13 @@
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import { WsAdapter } from '@nestjs/platform-ws';
 
 async function bootstrap() {
+  // const app = await NestFactory.create(AppModule);
   const app = await NestFactory.create(AppModule);
+  app.useWebSocketAdapter(new WsAdapter(app));
+
   /**
    * @ValidationPipe
    * ValidationPipe 使用了功能强大的 class-validator 包及其声明性验证装饰器。
