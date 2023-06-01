@@ -22,4 +22,9 @@ export class FriendService {
     });
     return friend.save();
   }
+
+  async getList(sender_id: number): Promise<Friend[]> {
+    const friend = this.friendModel.find({ sender_id });
+    return friend;
+  }
 }

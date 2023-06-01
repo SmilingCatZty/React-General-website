@@ -39,7 +39,7 @@ export class WsGateWay implements OnGatewayConnection, OnGatewayDisconnect {
   async handleConnection(@ConnectedSocket() client: Socket) {
     // 处理连接事件
     console.log('socket开始链接');
-    // client.join('1000#1001');
+    // await client.join('dsadas');
   }
 
   async handleDisconnect() {
@@ -53,9 +53,10 @@ export class WsGateWay implements OnGatewayConnection, OnGatewayDisconnect {
     @ConnectedSocket() client: Socket,
   ): void {
     console.log('开启一对一聊天', data);
+
     const { signal, message } = data;
-    const roomId = signal;
-    // client.emit('message', message);
+    // const roomId = signal;
+    // client.join(roomId);
     client.send(JSON.stringify({ data: message }));
     // this.server.to(roomId).emit('message', message);
     // 处理聊天消息

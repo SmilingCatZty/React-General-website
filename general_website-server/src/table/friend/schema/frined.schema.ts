@@ -4,7 +4,7 @@ import { HydratedDocument } from 'mongoose';
 export type FriendDocument = HydratedDocument<Friend>;
 
 @Schema({
-  _id: false,
+  _id: true,
   versionKey: false,
 })
 export class Friend {
