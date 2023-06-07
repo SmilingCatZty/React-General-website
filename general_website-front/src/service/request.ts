@@ -3,8 +3,8 @@ import { store } from '@/redux'
 
 // 创建axios实例
 const instance = axios.create({
-  // baseURL: 'http://127.0.0.1:5000', // `baseURL` 将自动加在 `url` 前面，除非 `url` 是一个绝对 URL。
-  baseURL: '/api',
+  baseURL: 'http://127.0.0.1:5000/smilling-cat', // `baseURL` 将自动加在 `url` 前面，除非 `url` 是一个绝对 URL。
+  // baseURL: '/api',
   timeout: 1000, // 响应时间
   headers: {
     'Content-Type': 'application/json;charset=UTF-8',

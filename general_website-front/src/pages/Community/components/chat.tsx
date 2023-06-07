@@ -6,6 +6,7 @@ import { modalStyle } from '../styles/leftStyle'
 import { CommunityChatModel } from '@/modules/community/community'
 import io, { Socket } from 'socket.io-client';
 
+
 // import api from '@/service/api/community/community'
 
 interface LeftChatProps {
@@ -17,15 +18,17 @@ interface LeftChatEmits {
   showModal: () => void
 }
 
+let socket_io: Socket
+
+
 const LeftChat: React.FC<LeftChatProps> = forwardRef<LeftChatEmits, LeftChatProps>((props: LeftChatProps, ref) => {
   useImperativeHandle(ref, () => ({
     showModal,
   }))
 
-  const [socket, setSocket] = useState<Socket>();
   const { userId } = props
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  let [chatMessage, setChatMessage] = useState<string>('')
+  const [isModalOpen, setIsModalOpen] = useState(false); // 打开聊天弹窗
+  let [chatMessage, setChatMessage] = useState<string>('') // 聊天信息
   const [chatHistory] = useState<CommunityChatModel[]>(
     [
       { sender_id: 1000, reciever_id: 1, status: 1, message: '在吗', send_time: 1678764176 },
@@ -38,28 +41,26 @@ const LeftChat: React.FC<LeftChatProps> = forwardRef<LeftChatEmits, LeftChatProp
       { sender_id: 6, reciever_id: 1000, status: 1, message: '呜呜呜呜呜', send_time: 1678764176 },
       { sender_id: 1000, reciever_id: 9, status: 1, message: '我心伤悲', send_time: 1678764176 },
       { sender_id: 7, reciever_id: 1000, status: 1, message: '莫知我哀', send_time: 1678764176 },
-    ])
+    ]) // 聊天记录
 
   const showModal = () => {
     setIsModalOpen(true);
   }
 
-  const handleOk = () => {
-    setIsModalOpen(false);
-  };
-
   const handleCancel = () => {
     setIsModalOpen(false);
   };
 
+  // 监听输入改变
   const changeInputValue = (e: any) => {
     setChatMessage(e.target.value)
   }
 
+  // 发送信息
   const handleSendMessage = () => {
     console.log('发送消息', chatMessage);
     const message = {
-      event: "friend",
+      event: "one",
       data: {
         sender_id: 1000,
         reciever_id: 1001,
@@ -67,38 +68,36 @@ const LeftChat: React.FC<LeftChatProps> = forwardRef<LeftChatEmits, LeftChatProp
         message: chatMessage
       }
     }
-    socket?.send(JSON.stringify(message))
-    // setChatMessage('');
+    // socket?.send(JSON.stringify(message)) // ws方法发送
+    socket_io.emit('one', message);
   };
 
   useEffect(() => {
-    const ws = new WebSocket('ws://localhost:3002');
-    ws.onopen = () => {
-      console.log('Connected to WebSocket server.');
-    };
-    ws.onmessage = (event) => {
-      console.log('event', event);
-      console.log(`Received message: ${event.data}`);
-    };
-    ws.onclose = () => {
-      console.log('Disconnected from WebSocket server.');
-    };
-    setSocket(ws as any);
+    // --- socket.io ---
     // 建立与服务器的 WebSocket 连接
-    // const newSocket = io('ws://localhost:3002');
-    // // 监听服务器发送的消息
-    // newSocket.on('message', (message) => {
-    //  console.log('服务端发的消息',message);
-    // });
-    // // 监听加入房间事件
-    // newSocket.on('join', (user) => {
-    //   console.log(`${user} 加入了聊天室。`);
-    // });
-    // setSocket(newSocket);
-
+    socket_io = io('http://localhost:8080', { transports: ['websocket'] });
+    // 监听服务器发送的消息
+    socket_io.on('message', (message) => {
+      console.log('服务端发的消息', message);
+    });
+    // 原生websocket
+    // const ws = new WebSocket('ws://localhost:80');
+    // ws.onopen = () => {
+    //   console.log('Connected to WebSocket server.');
+    // };
+    // ws.onmessage = (event) => {
+    //   console.log('event', event);
+    //   console.log(`Received message: ${event.data}`);
+    // };
+    // ws.onclose = () => {
+    //   console.log('Disconnected from WebSocket server.');
+    // };
+    // setSocket(ws as any);
     return () => {
-      ws.close()
-      // newSocket.disconnect();
+      // --- WebSocket ---
+      // ws.close()
+      // --- socket.io ---
+      socket_io.disconnect();
     }
   }, [])
 
@@ -106,7 +105,6 @@ const LeftChat: React.FC<LeftChatProps> = forwardRef<LeftChatEmits, LeftChatProp
     <div>
       <Modal title={'朋友'}
         open={isModalOpen}
-        onOk={handleOk}
         onCancel={handleCancel}
         footer={false}
         width={570}

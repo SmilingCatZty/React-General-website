@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
-import { WsGateWay } from './websocket/ws.gateway';
+// import { WsGateWay } from './socket-ws/ws.gateway'; // socket-ws
 
 import { ExampleModule } from './Example/example.module';
 import { NoticeModule } from './table/notice/notice.modules';
@@ -14,15 +14,16 @@ import { HomeAreaModule } from './table/homeArea/homeArea-module';
 import { UserModule } from './table/user/user.module';
 import { FriendModule } from './table/friend/friend.module';
 import { ChatModule } from './table/chat/chat.moudle';
+import { SocketIoModule } from './socket-io/socket-io.module';
 
 @Module({
   // 导入模块
   imports: [
     MongooseModule.forRoot('mongodb://localhost:27017/general-website'),
+    SocketIoModule,
     // MongooseModule.forRootAsync({
     //   imports: [MongooseModule.forRoot('mongodb://general_website:27017')],
     // }),
-    // WebSocketModule, // webSocket
     ExampleModule,
     NoticeModule,
     // ConsultModule,
@@ -35,6 +36,6 @@ import { ChatModule } from './table/chat/chat.moudle';
     ChatModule,
   ],
   controllers: [AppController],
-  providers: [AppService, WsGateWay],
+  providers: [AppService],
 })
 export class AppModule {}
