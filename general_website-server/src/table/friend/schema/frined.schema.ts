@@ -9,16 +9,19 @@ export type FriendDocument = HydratedDocument<Friend>;
 })
 export class Friend {
   @Prop()
-  sender_id: number; // 用户id
+  person_id: number; // 用户id
 
   @Prop()
-  reciever_id: number; // 好友id
+  friend_list: number[]; // 好友列表
 
   @Prop()
-  friend_signal: string; // 好友标识
+  friend_apply_list: number[]; // 好友申请列表
 
   @Prop()
-  status: number; // 状态
+  friend_accept_list: number[]; // 接受成为好友列表
+
+  @Prop()
+  friend_reject_list: number[]; // 拒绝成为好友列表
 }
 
 export const FriendSchema = SchemaFactory.createForClass(Friend);

@@ -3,6 +3,8 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { Friend, FriendSchema } from './schema/frined.schema';
 import { FrinedController } from './friend.controller';
 import { FriendService } from './friend.service';
+import { UserModule } from '../user/user.module';
+import { ChatModule } from '../chat/chat.moudle';
 
 @Module({
   imports: [
@@ -12,6 +14,8 @@ import { FriendService } from './friend.service';
         schema: FriendSchema,
       },
     ]),
+    UserModule,
+    ChatModule,
   ],
   controllers: [FrinedController],
   providers: [FriendService],

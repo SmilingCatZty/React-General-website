@@ -33,10 +33,18 @@
         .avatar-other {
           margin-left: 10px;
           font-size: 14px;
+          display: flex;
+          align-items: center;
+          flex-wrap: wrap;
 
-          p .other-msg {
-            line-height: 20px;
-            color: rgba(220, 215, 215, 1);
+          div {
+            display: block;
+            width: 100%;
+
+            .other-msg {
+              line-height: 20px;
+              color: rgba(220, 215, 215, 1);
+            }
           }
         }
       }

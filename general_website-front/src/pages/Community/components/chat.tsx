@@ -3,7 +3,7 @@ import { UserOutlined, SmileOutlined, PictureOutlined, FileOutlined } from '@ant
 import { Avatar, Button, Input, Modal } from 'antd';
 import '../styles/left.scss'
 import { modalStyle } from '../styles/leftStyle'
-import { CommunityChatModel } from '@/modules/community/community'
+import { FriendChatModel } from '@/modules/community/community'
 import io, { Socket } from 'socket.io-client';
 
 
@@ -29,7 +29,7 @@ const LeftChat: React.FC<LeftChatProps> = forwardRef<LeftChatEmits, LeftChatProp
   const { userId } = props
   const [isModalOpen, setIsModalOpen] = useState(false); // 打开聊天弹窗
   let [chatMessage, setChatMessage] = useState<string>('') // 聊天信息
-  const [chatHistory] = useState<CommunityChatModel[]>(
+  const [chatHistory] = useState<FriendChatModel[]>(
     [
       { sender_id: 1000, reciever_id: 1, status: 1, message: '在吗', send_time: 1678764176 },
       { sender_id: 2, reciever_id: 1000, status: 1, message: '在干什么', send_time: 1678764176 },

@@ -9,22 +9,19 @@ export class FriendService {
     @InjectModel('Friend') private friendModel: Model<FriendDocument>,
   ) {}
 
-  async create(
-    sender_id: number,
-    reciever_id: number,
-    status: number,
-  ): Promise<Friend> {
+  async create({ person_id }): Promise<Friend> {
     const friend = new this.friendModel({
-      sender_id,
-      reciever_id,
-      status,
-      friend_signal: sender_id + '#' + reciever_id,
+      person_id,
+      friend_list: [],
+      friend_apply_list: [],
+      friend_accept_list: [],
+      friend_reject_list: [],
     });
     return friend.save();
   }
 
-  async getList(sender_id: number): Promise<Friend[]> {
-    const friend = this.friendModel.find({ sender_id });
+  async getList({ person_id }): Promise<Friend> {
+    const friend = await this.friendModel.findOne({ person_id });
     return friend;
   }
 }

@@ -21,4 +21,15 @@ export class ChatService {
     });
     return chat.save();
   }
+
+  // 获取聊天信息
+  async getChatMsg({ sender_id, reciever_id }): Promise<Chat[]> {
+    const chat = this.chatModel.find({
+      $or: [
+        { sender_id, reciever_id },
+        { sender_id: reciever_id, reciever_id: sender_id },
+      ],
+    });
+    return chat;
+  }
 }

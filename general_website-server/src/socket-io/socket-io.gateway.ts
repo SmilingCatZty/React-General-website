@@ -6,6 +6,7 @@ import {
   OnGatewayInit,
   OnGatewayConnection,
   OnGatewayDisconnect,
+  ConnectedSocket,
 } from '@nestjs/websockets';
 import { SocketIoService } from './socket-io.service';
 import { CreateSocketIoDto } from './dto/create-socket-io.dto';
@@ -50,8 +51,12 @@ export class SocketIoGateway
   // 1对1聊天
   @Header('Access-Control-Allow-Origin', '*')
   @SubscribeMessage('one')
-  chatOne(@MessageBody() createSocketIoDto: CreateSocketIoDto) {
-    return this.socketIoService.chatWithOne(createSocketIoDto);
+  chatOne(
+    @MessageBody() createSocketIoDto: CreateSocketIoDto,
+    @ConnectedSocket() client: Socket,
+  ) {
+    const msg = this.socketIoService.chatWithOne(createSocketIoDto);
+    client.emit('message', msg);
   }
 
   // 群聊

@@ -62,6 +62,11 @@ export class UserService {
     return this.userModule.findOne({ account_name }).exec();
   }
 
+  // 根据用户id查找用户信息
+  async findOneByUserId(account_id: number): Promise<User> {
+    return this.userModule.findOne({ account_id });
+  }
+
   async getList(): Promise<User[]> {
     const user = await this.userModule.find();
     return user;
