@@ -1,20 +1,28 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { FireOutlined, ReloadOutlined } from '@ant-design/icons';
 import '../styles/right.scss'
 import { CommunityHotModal } from '@/modules/community'
 import { useNavigate } from 'react-router-dom';
+import { HotNewsModel, HotPostModel } from '@/modules/community/community'
+import api from '@/service/api/community/community'
 
 
 interface CommunityRightProps {
   hotList: CommunityHotModal
 }
+
 const CommunityRight: React.FC<CommunityRightProps> = (props) => {
   const navigateTo = useNavigate()
+  let [hotPostList, setHotPostList] = useState<HotPostModel[]>([])
+  let [hotNewsList, setHotNewsList] = useState<HotNewsModel[]>([])
 
+
+  // 刷新
   const refresh = () => {
-    console.log('刷新列表');
+   getHotPostList()
   }
 
+  // 查看更多
   const viewMore = (page: string) => {
     switch (page) {
       case 'hotPost':
@@ -24,11 +32,45 @@ const CommunityRight: React.FC<CommunityRightProps> = (props) => {
     }
   }
 
-  const goDetail = (id: string | number) => {
+  // 查看详情
+  const viewDetail = (id: string | number) => {
     navigateTo(`post-detail?id=${id}`)
   }
 
-  const { hotList } = { ...props }
+  // 获取社区热帖列表
+  const getHotPostList = async () => {
+    try {
+      const res: any = await api.getHotPostList()
+      console.log('res', res);
+
+      if (res.data && res.status === 200) {
+        setHotPostList(() => res.data)
+      }
+    } catch (error) {
+      console.error('社区列表页', error);
+    }
+  }
+
+  // 获取官方咨询列表
+  const getHotNewsList = async () => {
+    try {
+      const res: any = await api.getHotConsultList()
+      if (res.data && res.status === 200) {
+        setHotNewsList(() => res.data)
+      }
+    } catch (error) {
+      console.error('社区列表页', error);
+    }
+  }
+
+  useEffect(() => {
+    return () => {
+      getHotPostList()
+      getHotNewsList()
+    }
+  }, [])
+
+  // const { hotList } = { ...props }
   return (
     <div className='pageright'>
       <div className='right-hot'>
@@ -41,9 +83,9 @@ const CommunityRight: React.FC<CommunityRightProps> = (props) => {
           <div className='post-list'>
             <ul>
               {
-                hotList.hotPostList.map((item) => {
+                hotPostList.map((item) => {
                   return (
-                    <li key={item.id} onClick={() => goDetail(item.id)}><FireOutlined /> {item.title}</li>
+                    <li key={item.blog_id} onClick={() => viewDetail(item.blog_id)}><FireOutlined /> {item.blog_title}</li>
                   )
                 })
               }
@@ -62,9 +104,9 @@ const CommunityRight: React.FC<CommunityRightProps> = (props) => {
           <div className='news-list'>
             <ul>
               {
-                hotList.hotNewsList.map((item) => {
+                hotNewsList.map((item) => {
                   return (
-                    <li key={item.id}><FireOutlined /> {item.title}</li>
+                    <li key={item._id}><FireOutlined /> {item.title}</li>
                   )
                 })
               }

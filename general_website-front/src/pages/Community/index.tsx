@@ -26,7 +26,7 @@ const mainInfo: PostModal = {
       userName: 'Justin',
       avatar: '',
       postList: {
-        postId:1,
+        postId: 1,
         title: '贾斯丁第一次发的帖子',
         sendTime: 1679307224,
         description: '这是我第一次发的帖子,它象征着和平',
@@ -40,7 +40,7 @@ const mainInfo: PostModal = {
       userName: 'Alpha',
       avatar: '',
       postList: {
-        postId:2,
+        postId: 2,
         title: '阿尔法第一次发的帖子',
         sendTime: 1679307224,
         description: '这是我第一次发的帖子,它象征着希望',
@@ -76,7 +76,6 @@ const mainInfo: PostModal = {
 
 
 const CommunityPage = () => {
-
   const location = useLocation()
   const { pathname } = { ...location }
 
@@ -89,7 +88,7 @@ const CommunityPage = () => {
             <PageLeft />
           </div>
           <div className='community-main'>
-            <PageMain postingList={mainInfo.userInfo} />
+            <PageMain/>
           </div>
           <div className='community-right'>
             <PageRight hotList={mainInfo.hotInfo} />

@@ -47,7 +47,6 @@ export class FrinedController {
           reciever_id: item,
         });
         const noReadCount = chat.filter((item) => item.status === 0).length;
-        console.log('chatInfo', noReadCount);
         friendInfoList.push({
           account_id: user.account_id,
           account_name: user.account_name,

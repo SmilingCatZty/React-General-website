@@ -31,6 +31,7 @@ export class ConsultController {
     }
   }
 
+  // 获取资讯列表
   @Get('list')
   async list() {
     try {

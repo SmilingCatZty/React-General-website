@@ -19,6 +19,7 @@ import { UpdateExampleDto } from './dto/update-example.dto';
 import { Exclude } from 'class-transformer';
 import { IsOptional } from 'class-validator';
 import { Example } from './schema/example.schema';
+import { ClearUselessPropertie } from 'src/decretors/global.dec';
 
 export class UserEntity {
   auth: boolean;
@@ -36,7 +37,9 @@ export class UserEntity {
 @Controller('example')
 export class ExampleController {
   constructor(private readonly exampleService: ExampleService) {}
+
   @Get('list')
+  @ClearUselessPropertie // 自定义装饰器，用于返回一个没有 "_id","__v"的数组或对象
   async getExample() {
     const page = 1;
     const size = 10;

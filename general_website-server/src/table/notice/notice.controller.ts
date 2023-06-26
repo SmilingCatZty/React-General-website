@@ -12,11 +12,28 @@ import { NoticeService } from './notice.service';
 import { CreateNoticeDto } from './dto/create-notice.dto';
 import { UpdateNoticeDto } from './dto/update-notice.dto';
 import { ListNoticeDto } from './dto/list-notice.dto';
+import { ClearUselessPropertie } from 'src/decretors/global.dec';
 
 @Controller('notice')
 export class NoticeController {
   constructor(private readonly noticeService: NoticeService) {}
 
+  @Post('create')
+  async create(@Body() createNoticeDto: CreateNoticeDto) {
+    try {
+      const notice = await this.noticeService.create(
+        createNoticeDto.title,
+        createNoticeDto.type,
+        createNoticeDto.content,
+        createNoticeDto.createTime,
+      );
+      return notice;
+    } catch (err) {
+      throw new InternalServerErrorException(err.message);
+    }
+  }
+
+  // 获取通知列表
   @Get('list')
   async get(@Query() listNoticeDto: ListNoticeDto, @Req() req) {
     const { size, page, info } = listNoticeDto;
@@ -32,6 +49,20 @@ export class NoticeController {
     }
   }
 
+  // 获取热点资讯
+  @Get('consultList')
+  async getHotConsultList() {
+    const page = 1;
+    const size = 5;
+    try {
+      const notice = await this.noticeService.findAllByHotView({ page, size });
+      return notice;
+    } catch (error) {
+      throw new InternalServerErrorException(error.msg);
+    }
+  }
+
+  // 更新通知
   @Put('update')
   async update(@Body() updateNoticeDto: UpdateNoticeDto) {
     try {
@@ -39,21 +70,6 @@ export class NoticeController {
       return notice;
     } catch (error) {
       throw new InternalServerErrorException(error.message);
-    }
-  }
-
-  @Post('add')
-  async create(@Body() createNoticeDto: CreateNoticeDto) {
-    try {
-      const notice = await this.noticeService.create(
-        createNoticeDto.title,
-        createNoticeDto.type,
-        createNoticeDto.content,
-        createNoticeDto.createTime,
-      );
-      return notice;
-    } catch (err) {
-      throw new InternalServerErrorException(err.message);
     }
   }
 }

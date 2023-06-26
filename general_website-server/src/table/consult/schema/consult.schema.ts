@@ -9,10 +9,10 @@ export type ConsultDocument = HydratedDocument<Consult>;
 @Schema()
 export class Consult {
   @Prop()
-  title: string;
+  title: string; // 标题
 
   @Prop()
-  background: string;
+  img: string; // 图片
 }
 
 export const ConsultSchema = SchemaFactory.createForClass(Consult);
