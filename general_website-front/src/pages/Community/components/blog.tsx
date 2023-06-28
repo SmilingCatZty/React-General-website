@@ -5,7 +5,7 @@ import TextArea from 'antd/es/input/TextArea'
 import ImgUpload from '@/components/imgUpload/index'
 import { store } from '@/redux'
 import dayjs from 'dayjs'
-import api from '@/service/api/community/community'
+import api from '@/service/api/community'
 
 interface BlogProps {
   ref: any

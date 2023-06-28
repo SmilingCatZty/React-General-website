@@ -86,7 +86,16 @@ const homeRouter: Array<RouteObject> = [
               title: "数据管理-活动预告",
               key: "forecast"
             }
-          }
+          },
+          {
+            path: 'blog',
+            element: lazyLoad(React.lazy(() => import("@/pages/DataManager/components/community"))),
+            meta: {
+              requiresAuth: false,
+              title: "社区管理-帖子审核",
+              key: "blog"
+            }
+          },
         ]
       },
     ]

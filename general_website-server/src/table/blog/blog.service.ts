@@ -28,6 +28,8 @@ export class BlogService {
     size: number,
     status?: string,
   ): Promise<Blog[]> {
+    console.log(status);
+
     const blogList = this.blogModel
       .find(status ? { blog_status: status } : null)
       .sort({ blog_create_time: -1 })
@@ -35,6 +37,17 @@ export class BlogService {
       .limit(size)
       .exec();
     return blogList;
+  }
+
+  /**
+   * 查询博客总数
+   * @param {string} status
+   */
+  async findBlogTotal(status): Promise<number> {
+    const blogList = this.blogModel.find(
+      status !== '' ? { blog_status: status } : null,
+    );
+    return (await blogList).length;
   }
 
   /**

@@ -33,7 +33,7 @@ const items: MenuItem[] = [
     getItem('新活动预告', 'activity-forecast'),
   ]),
   getItem('社区管理', 'sub4', <SettingOutlined />, [
-    getItem('社区帖子管理', 'post'),
+    getItem('社区帖子管理', 'blog'),
   ]),
   getItem('人员管理', 'sub5', <SettingOutlined />, [
     getItem('用户权限', 'user'),
@@ -70,7 +70,7 @@ const DataAnalysis: React.FC = () => {
       case 'consult-detail':
         setTitle(() => '咨询内容编辑')
         break
-      case 'community':
+      case 'blog':
         setTitle(() => '社区帖子列表')
         break
     }

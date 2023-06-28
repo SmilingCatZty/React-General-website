@@ -1,4 +1,5 @@
 import axios from '../../request'
+import { GetBlogListModal } from './community'
 
 const api = {
   /**
@@ -13,7 +14,7 @@ const api = {
   },
 
   /**
-   * 获取博客列表
+   * 获取博客列表（白名单）
    * @param {number}page
    * @param {number}size
    */
@@ -22,6 +23,19 @@ const api = {
       method: 'get',
       url: `/blog/passList`,
       params: { page, size }
+    })
+  },
+
+  /**
+   * 获取全部博客（黑、白名单）
+   * @param createBlogData
+   * @returns
+   */
+  getBlogList: (pageParams: GetBlogListModal) => {
+    return axios({
+      method: 'get',
+      url: '/blog/list',
+      params: { ...pageParams }
     })
   },
 
@@ -62,7 +76,7 @@ const api = {
   },
 
   /**
-   * 获取日志信息
+   * 获取日志信息（白名单）
    * @param {string} blog_id
    */
   getblogInfo: (blog_id: string) => {

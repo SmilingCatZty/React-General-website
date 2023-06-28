@@ -43,18 +43,23 @@ export class BlogController {
   @Get('list')
   @ClearUselessPropertie
   async getList(@Query() queryParams: GetBlogDto) {
-    const { page, size } = queryParams;
-    const blogs = await this.blogService.findBlogList(page, size);
-    const blogList = await Promise.all(
-      blogs.map(async (item: BlogDocument) => {
-        const { account_avatar } = await this.userService.findOneByUserId(
-          item.blog_user_id,
-        );
-        const blog = item.toObject(); // 转换为普通对象
-        return { ...blog, blog_avatar: account_avatar };
-      }),
-    );
-    return blogList;
+    const { page, size, status } = queryParams;
+    let blog_status = '';
+    if (status !== '') {
+      blog_status = status;
+    }
+    const blogs = await this.blogService.findBlogList(page, size, blog_status);
+    const total = await this.blogService.findBlogTotal(status);
+    // const blogList = await Promise.all(
+    //   blogs.map(async (item: BlogDocument) => {
+    //     const { account_avatar } = await this.userService.findOneByUserId(
+    //       item.blog_user_id,
+    //     );
+    //     const blog = item.toObject(); // 转换为普通对象
+    //     return { ...blog, blog_avatar: account_avatar };
+    //   }),
+    // );
+    return { blogs, total };
   }
 
   @Get('info')

@@ -4,7 +4,7 @@ import { Avatar } from 'antd';
 import { UserOutlined, LikeOutlined, LikeFilled, ProfileOutlined } from '@ant-design/icons';
 import './styles/detail.scss'
 import dayjs from 'dayjs'
-import api from '@/service/api/community/community'
+import api from '@/service/api/community'
 import { BlogInfoModel } from '@/modules/community/community';
 import { store } from '@/redux';
 

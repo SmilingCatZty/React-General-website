@@ -39,6 +39,19 @@ type BlogInfoModel = {
   blog_create_time: number // 创建时间
 }
 
+// 黑白名单模型
+type BlogAllInfoModal = {
+  blog_comment_list: string[]
+  blog_content: string
+  blog_create_time: number
+  blog_id: string
+  blog_img: string[]
+  blog_like_list: string[]
+  blog_status: string
+  blog_title: string
+  blog_user_id: number
+}
+
 // 热帖信息模型
 type HotPostModel = {
   blog_id: string
@@ -51,4 +64,4 @@ type HotNewsModel = {
   title: string
 }
 
-export { CommunityInfoModel, FriendChatModel, BlogInfoModel, HotPostModel, HotNewsModel }
+export { CommunityInfoModel, FriendChatModel, BlogInfoModel, HotPostModel, HotNewsModel, BlogAllInfoModal }

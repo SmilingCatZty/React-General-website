@@ -3,7 +3,7 @@ import { FireOutlined, ReloadOutlined } from '@ant-design/icons';
 import '../styles/right.scss'
 import { useNavigate } from 'react-router-dom';
 import { HotNewsModel, HotPostModel } from '@/modules/community/community'
-import api from '@/service/api/community/community'
+import api from '@/service/api/community'
 
 
 interface CommunityRightProps { }

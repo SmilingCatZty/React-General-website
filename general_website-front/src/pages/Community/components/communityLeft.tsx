@@ -6,7 +6,7 @@ import { CommunityInfoModel } from '@/modules/community/community'
 import { modalStyle } from '../styles/leftStyle'
 import { FriendChatModel } from '@/modules/community/community'
 import io, { Socket } from 'socket.io-client';
-import api from '@/service/api/community/community'
+import api from '@/service/api/community'
 
 let socket_io: Socket
 

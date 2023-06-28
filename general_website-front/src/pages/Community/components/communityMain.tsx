@@ -5,7 +5,7 @@ import '../styles/main.scss'
 import dayjs from 'dayjs'
 import { useNavigate } from 'react-router-dom';
 import { BlogInfoModel } from '@/modules/community/community';
-import api from '@/service/api/community/community'
+import api from '@/service/api/community'
 import { store } from '@/redux';
 
 interface CommunityMainProps { }
