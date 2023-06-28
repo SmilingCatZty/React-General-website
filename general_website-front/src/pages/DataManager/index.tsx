@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Menu } from 'antd';
@@ -32,55 +32,86 @@ const items: MenuItem[] = [
     getItem('咨询列表', 'consult'),
     getItem('新活动预告', 'activity-forecast'),
   ]),
-  getItem('社区管理', 'sub4', <SettingOutlined />, [
+  getItem('社区管理', 'sub3', <SettingOutlined />, [
     getItem('社区帖子管理', 'blog'),
   ]),
-  getItem('人员管理', 'sub5', <SettingOutlined />, [
+  getItem('人员管理', 'sub4', <SettingOutlined />, [
     getItem('用户权限', 'user'),
   ]),
 ];
 
 // submenu keys of first level
-const rootSubmenuKeys = ['sub1', 'sub2', 'sub4'];
+const rootSubmenuKeys = ['sub1', 'sub2', 'sub3'];
 
 const DataAnalysis: React.FC = () => {
-  const [openKeys, setOpenKeys] = useState(['sub1']);
-  // const [openItemKey, setOpenItemKey] = useState('analyse')
+  const [openKeys, setOpenKeys] = useState<string>(''); // 左侧导航栏父项
+  const [openItemKey, setOpenItemKey] = useState<string>('') // 左侧导航栏子项
+  const [openTitle, setOpenTitle] = useState<string>('') // 右侧标题
   const navigateTo = useNavigate()
 
-  const [title, setTitle] = useState('在线人数统计')
 
   const onOpenChange: MenuProps['onOpenChange'] = (keys) => {
-    const latestOpenKey = keys.find((key) => openKeys.indexOf(key) === -1);
-    if (rootSubmenuKeys.indexOf(latestOpenKey!) === -1) {
-      setOpenKeys(keys);
-    } else {
-      setOpenKeys(latestOpenKey ? [latestOpenKey] : []);
+    const latestOpenKey = keys.find((key) => {
+      return [openKeys].indexOf(key) === -1
+    });
+    if (latestOpenKey && rootSubmenuKeys.indexOf(latestOpenKey) !== -1) {
+      setOpenKeys(latestOpenKey);
+      localStorage.setItem('data-manager-key', latestOpenKey)
     }
   };
 
   const menuItemHandler = (v: MenuInfo) => {
+    let title = '在线人数统计'
     switch (v.key) {
       case 'analyse':
-        setTitle(() => '在线人数统计')
+        title = '在线人数统计'
         break
       case 'consult':
-        setTitle(() => '咨询汇总列表')
+        title = '咨询汇总列表'
         break
       case 'consult-detail':
-        setTitle(() => '咨询内容编辑')
+        title = '咨询内容编辑'
         break
       case 'blog':
-        setTitle(() => '社区帖子列表')
+        title = '社区帖子列表'
         break
     }
-    // setOpenItemKey(v.key)
+    console.log(v.key);
+
+    setOpenTitle(() => title)
+    setOpenItemKey(v.key)
+    localStorage.setItem('data-manager-title', title)
     if (v.key !== 'person') {
       navigateTo(v.key)
+      localStorage.setItem('data-manager-navgate',v.key)
+      localStorage.setItem('data-manager-itemKey', v.key)
     } else {
       navigateTo('/home/data-manager')
     }
   }
+
+  useEffect(() => {
+    const localNavigate = localStorage.getItem('data-manager-navgate')
+    const localTitle = localStorage.getItem('data-manager-title')
+    const localOpenKeys = localStorage.getItem('data-manager-key')
+    const localOpenItemKeys = localStorage.getItem('data-manager-itemKey')
+
+    if (localNavigate) {
+      navigateTo(localNavigate)
+    } else {
+      navigateTo('analyse')
+    }
+
+    if (localTitle && localOpenKeys && localOpenItemKeys) {
+      setOpenTitle(() => localTitle)
+      setOpenKeys(() => localOpenKeys)
+      setOpenItemKey(() => localOpenItemKeys)
+    } else {
+      setOpenTitle(() => '在线人数统计')
+      setOpenKeys(() => 'sub1')
+      setOpenItemKey(() => 'analyse')
+    }
+  }, [navigateTo])
 
   return (
     <div className='data-analysis'>
@@ -88,9 +119,10 @@ const DataAnalysis: React.FC = () => {
         <div className='analysis-menu'>
           <Menu
             mode="inline"
-            openKeys={openKeys}
-            defaultSelectedKeys={['analyse']}
-            defaultOpenKeys={openKeys}
+            openKeys={[openKeys]}
+            selectedKeys={[openItemKey]}
+            defaultOpenKeys={[openKeys]}
+            defaultSelectedKeys={[openItemKey]}
             onOpenChange={onOpenChange}
             style={{ width: 256 }}
             items={items}
@@ -98,7 +130,7 @@ const DataAnalysis: React.FC = () => {
           />
         </div>
         <div className='analysis-container'>
-          <div className='analysis-title'>{title}</div>
+          <div className='analysis-title'>{openTitle}</div>
           <div className='analysis-content'>
             {/* <Example/> */}
             <Outlet />

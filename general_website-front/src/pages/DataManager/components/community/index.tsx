@@ -175,7 +175,7 @@ const DataManagerCommunity: React.FC = () => {
           <Input onChange={changeHandler} />
         </Form.Item>
         <Form.Item label="状态" name="blog_status">
-          <Select onChange={selectHandler} placeholder="请选择咨询消息类型" allowClear>
+          <Select onChange={selectHandler} placeholder="请选择要查看的博客类型" allowClear>
             <Option value="pass">通过</Option>
             <Option value="reject">驳回</Option>
           </Select>

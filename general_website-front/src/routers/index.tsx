@@ -12,7 +12,7 @@ const routerConfig = [
   // { path: 'home', element: <Home /> }
   {
     path: '/',
-    element: <Navigate to='/home/community' />
+    element: <Navigate to='/home/main' />
   },
   // 展示页
   ...displayRouter,

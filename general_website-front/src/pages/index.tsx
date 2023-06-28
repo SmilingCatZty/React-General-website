@@ -26,7 +26,7 @@ const HomePage: React.FC = (props: any) => {
 
   let loginRef = useRef<ModalFuncType>(null)
   let [navInfo, setNavInfo] = useState<NavigateInfoModal>({
-    defaultNav: 'data-analysis',
+    defaultNav: 'home',
     webLogo: 'https://webimages.mongodb.com/_com_assets/cms/kuyjf3vea2hg34taa-horizontal_default_slate_blue.svg?auto=format%252Ccompress',
     menuList: [
       {
