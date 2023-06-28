@@ -6,27 +6,28 @@ import dayjs from 'dayjs'
 import { useNavigate } from 'react-router-dom';
 import { BlogInfoModel } from '@/modules/community/community';
 import api from '@/service/api/community/community'
+import { store } from '@/redux';
 
 interface CommunityMainProps { }
 
 const CommunityMain: React.FC<CommunityMainProps> = (props) => {
   const navigateTo = useNavigate()
-  
+  const { user } = store.getState()
+
   let [blogList, setBlogList] = useState<BlogInfoModel[]>([]) // 博客列表
   const pageInfo = { page: 1, size: 10 }  // 列表信息
 
   // 点赞
-  const like = async(item: any) => {
-    console.log(item);
+  const like = async (item: any) => {
     const res = await api.like(item.blog_id, 1000)
     if (res.data && res.status === 200) {
       getBlogList()
     }
   }
-  
+
   // 查看详情
   const viewDetail = (id: string | number) => {
-    navigateTo(`post-detail?id=${id}`)
+    navigateTo(`/home/community/post-detail?id=${id}`)
   }
 
   // 获取博客列表
@@ -69,7 +70,7 @@ const CommunityMain: React.FC<CommunityMainProps> = (props) => {
                   <span className='content-title'>{item.blog_title}</span>
                   <span className='content-description'>{item.blog_content}</span>
                 </div>
-                <div className='item-pic'>
+                <div className='item-pic' style={{ display: item.blog_img.length > 0 ? 'block' : 'none' }}>
                   {
                     item.blog_img.map((pic, index) => {
                       return (
@@ -85,8 +86,8 @@ const CommunityMain: React.FC<CommunityMainProps> = (props) => {
                     <span>{item.blog_comment_list.length}人</span>
                   </span>
                   <span onClick={() => like(item)}>
-                    <LikeOutlined style={{ display: (item.blog_like_list.includes(1000)) ? 'none' : 'inline' }} />
-                    <LikeFilled style={{ display: (item.blog_like_list.includes(1000)) ? 'inline' : 'none' }} />
+                    <LikeOutlined style={{ display: (item.blog_like_list.includes(user.userInfo.account_id)) ? 'none' : 'inline' }} />
+                    <LikeFilled style={{ display: (item.blog_like_list.includes(user.userInfo.account_id)) ? 'inline' : 'none' }} />
                     <span>{item.blog_like_list.length}</span>
                   </span>
                 </div>

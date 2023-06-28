@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { FireOutlined, ReloadOutlined } from '@ant-design/icons';
 import '../styles/right.scss'
-import { CommunityHotModal } from '@/modules/community'
 import { useNavigate } from 'react-router-dom';
 import { HotNewsModel, HotPostModel } from '@/modules/community/community'
 import api from '@/service/api/community/community'
 
 
-interface CommunityRightProps {
-  hotList: CommunityHotModal
-}
+interface CommunityRightProps { }
 
 const CommunityRight: React.FC<CommunityRightProps> = (props) => {
   const navigateTo = useNavigate()
@@ -19,7 +16,7 @@ const CommunityRight: React.FC<CommunityRightProps> = (props) => {
 
   // 刷新
   const refresh = () => {
-   getHotPostList()
+    getHotPostList()
   }
 
   // 查看更多
@@ -41,8 +38,6 @@ const CommunityRight: React.FC<CommunityRightProps> = (props) => {
   const getHotPostList = async () => {
     try {
       const res: any = await api.getHotPostList()
-      console.log('res', res);
-
       if (res.data && res.status === 200) {
         setHotPostList(() => res.data)
       }
@@ -70,7 +65,6 @@ const CommunityRight: React.FC<CommunityRightProps> = (props) => {
     }
   }, [])
 
-  // const { hotList } = { ...props }
   return (
     <div className='pageright'>
       <div className='right-hot'>

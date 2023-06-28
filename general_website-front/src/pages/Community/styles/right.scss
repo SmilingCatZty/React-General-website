@@ -15,7 +15,8 @@
         .title-refresh {
           font-size: 12px;
         }
-        .title-refresh:hover{
+
+        .title-refresh:hover {
           cursor: pointer;
         }
       }
@@ -27,6 +28,15 @@
         overflow: hidden;
 
         ul {
+          li {
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            text-overflow: ellipsis;
+            word-break: break-all;
+          }
+
           li:hover {
             cursor: pointer;
             background-color: rgba(255, 255, 255, .3);
@@ -39,7 +49,8 @@
         text-align: center;
         padding-top: 10px;
       }
-      .post-more:hover{
+
+      .post-more:hover {
         cursor: pointer;
       }
     }
@@ -69,7 +80,8 @@
         text-align: center;
         padding-top: 10px;
       }
-      .news-more:hover{
+
+      .news-more:hover {
         cursor: pointer;
       }
     }

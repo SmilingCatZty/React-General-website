@@ -58,7 +58,6 @@ const LeftChat: React.FC<LeftChatProps> = forwardRef<LeftChatEmits, LeftChatProp
 
   // 发送信息
   const handleSendMessage = () => {
-    console.log('发送消息', chatMessage);
     const message = {
       event: "one",
       data: {

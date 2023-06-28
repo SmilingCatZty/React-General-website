@@ -2,13 +2,16 @@
   width: 100%;
   height: 100%;
   display: flex;
-  padding: auto;
 
   .community-occupy{
     position: fixed;
     width: 100%;
     height: 5rem;
     overflow: hidden;
+  }
+
+  .community-detail{
+    width: 100%;
   }
 
   .community-contain {
@@ -22,6 +25,25 @@
     box-sizing: content-box;
     padding-top: 5rem;
 
+    .community-main-floating{
+      position: absolute;
+      width: 20px;
+      right: 300px;
+      top: 80px;
+      .floating-btn{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        button{
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         margin-top: 10px;
+        }
+      }
+    }
+
     .community-left {
       width: 280px;
       height: 580px;
@@ -31,10 +53,29 @@
     }
 
     .community-main {
+      position: relative;
       width: 580px;
       height:800px;
-      margin: 0 50px;
+      padding: 0 50px;
       overflow: scroll;
+      // .community-main-floating{
+      //   position: absolute;
+      //   width: 20px;
+      //   right: 15px;
+      //   top: 200px;
+      //   .floating-btn{
+      //     display: flex;
+      //     justify-content: center;
+      //     align-items: center;
+      //     flex-wrap: wrap;
+      //     button{
+      //      display: flex;
+      //      justify-content: center;
+      //      align-items: center;
+      //      margin-top: 10px;
+      //     }
+      //   }
+      // }
     }
     
     .community-main::-webkit-scrollbar {

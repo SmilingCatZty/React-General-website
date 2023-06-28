@@ -47,16 +47,44 @@ const api = {
 
   /**
    * 点赞
-   * @param {number}blog_id
+   * @param {string}blog_id
    * @param {number}blog_user_id
    */
-  like: (blog_id: number, blog_user_id: number) => {
+  like: (blog_id: string, blog_user_id: number) => {
     return axios({
       method: 'put',
       url: '/blog/like',
       data: {
         blog_id,
         blog_user_id
+      }
+    })
+  },
+
+  /**
+   * 获取日志信息
+   * @param {string} blog_id
+   */
+  getblogInfo: (blog_id: string) => {
+    return axios({
+      method: 'get',
+      url: `/blog/info`,
+      params: {
+        id: blog_id
+      }
+    })
+  },
+
+  /**
+   * 发日志
+   * @param {object} createBlogData
+   */
+  sendBlog: (createBlogData: any) => {
+    return axios({
+      method: 'post',
+      url: `/blog/create`,
+      data: {
+        ...createBlogData
       }
     })
   }

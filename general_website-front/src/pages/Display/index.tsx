@@ -1,6 +1,6 @@
 import React from 'react'
 import './styles/display.scss'
-import Swiper from '@/components/Swiper'
+import Swiper from '@/components/swiper'
 import { Anchor } from 'antd';
 import { SwiperImgListModal } from '@/modules/swiper'
 import DisplayIntroduce from './components/introduce'

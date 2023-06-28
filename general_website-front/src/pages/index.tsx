@@ -3,9 +3,9 @@ import { Outlet } from 'react-router-dom';
 import { Avatar, Button, Popover } from 'antd';
 import { HomeOutlined, MailOutlined, AlibabaOutlined, LineChartOutlined, PushpinOutlined } from '@ant-design/icons';
 import './home.scss'
-import Navigation from '@/components/Navigate/index';
+import Navigation from '@/components/navigate/index';
 import LoginPopUp from '@/pages/Login/index'
-import { NavigateInfoModal } from '@/components/Navigate/navigate'
+import { NavigateInfoModal } from '@/components/navigate/navigate'
 import { connect } from "react-redux";
 import { setToken, setUserInfo } from "@/redux/modules/user/action";
 import { setLoginStatus } from '@/redux/modules/global/action'

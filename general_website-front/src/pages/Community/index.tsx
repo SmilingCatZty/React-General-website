@@ -1,83 +1,36 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import './styles/index.scss'
 import PageLeft from './components/communityLeft'
 import PageMain from './components/communityMain'
 import PageRight from './components/communityRight'
-import { PostModal } from '@/modules/community'
+import BlogModal from './components/blog'
 import { Outlet, useLocation } from 'react-router-dom'
+import { Button, message } from 'antd'
+import { FileTextOutlined, VerticalAlignTopOutlined } from '@ant-design/icons';
+import { store } from '@/redux'
 
-const mainInfo: PostModal = {
-  userInfo: [
-    {
-      userName: 'Albate',
-      avatar: '',
-      postList: {
-        postId: 0,
-        title: '阿尔伯特第一次发的帖子',
-        sendTime: 1679307224,
-        description: '这是我第一次发的帖子,它象征着快乐',
-        imgList: ['', '', '', ''],
-        isLike: true,
-        likeNum: 16,
-        commentsNum: 20,
-      }
-    },
-    {
-      userName: 'Justin',
-      avatar: '',
-      postList: {
-        postId: 1,
-        title: '贾斯丁第一次发的帖子',
-        sendTime: 1679307224,
-        description: '这是我第一次发的帖子,它象征着和平',
-        imgList: ['', '', '', ''],
-        isLike: false,
-        likeNum: 16,
-        commentsNum: 20,
-      }
-    },
-    {
-      userName: 'Alpha',
-      avatar: '',
-      postList: {
-        postId: 2,
-        title: '阿尔法第一次发的帖子',
-        sendTime: 1679307224,
-        description: '这是我第一次发的帖子,它象征着希望',
-        imgList: ['', '', '', ''],
-        isLike: true,
-        likeNum: 16,
-        commentsNum: 20,
-      }
-    }
-  ],
-  hotInfo: {
-    hotNewsList: [
-      { id: 'hnl1', title: '这里是官方hot消息1' },
-      { id: 'hnl2', title: '这里是官方hot消息2' },
-      { id: 'hnl3', title: '这里是官方hot消息3' },
-      { id: 'hnl4', title: '这里是官方hot消息4' },
-      { id: 'hnl5', title: '这里是官方hot消息5' }
-    ],
-    hotPostList: [
-      { id: 'hpl1', title: '这里是hot帖子1' },
-      { id: 'hpl2', title: '这里是hot帖子2' },
-      { id: 'hpl3', title: '这里是hot帖子3' },
-      { id: 'hpl4', title: '这里是hot帖子4' },
-      { id: 'hpl5', title: '这里是hot帖子5' },
-      { id: 'hpl6', title: '这里是hot帖子6' },
-      { id: 'hpl7', title: '这里是hot帖子7' },
-      { id: 'hpl8', title: '这里是hot帖子8' },
-      { id: 'hpl9', title: '这里是hot帖子9' },
-      { id: 'hpl10', title: '这里是hot帖子10' }
-    ]
-  }
-}
 
+interface BlogEmits {
+  showModal: () => void;
+  handleCancel: () => void;
+};
 
 const CommunityPage = () => {
   const location = useLocation()
   const { pathname } = { ...location }
+  const { global } = store.getState()
+  const blogRef = useRef<BlogEmits>(null)
+
+  // const [messageApi, contextHolder] = message.useMessage();
+
+
+  const writeBlog = () => {
+    if (global.loginStatus) {
+      blogRef.current?.showModal()
+    } else {
+      message.info('请点击右上角小头像登录');
+    }
+  }
 
   return (
     <div className='homeCommunity'>
@@ -88,17 +41,27 @@ const CommunityPage = () => {
             <PageLeft />
           </div>
           <div className='community-main'>
-            <PageMain/>
+            <PageMain />
           </div>
           <div className='community-right'>
-            <PageRight hotList={mainInfo.hotInfo} />
+            <PageRight />
+          </div>
+          <div className='community-main-floating'>
+            <div className='floating-btn'>
+              <Button shape='round' style={{ width: '40px', height: '40px' }} icon={<FileTextOutlined />} onClick={() => writeBlog()}></Button>
+              <Button shape='round' style={{ width: '40px', height: '40px' }} icon={<VerticalAlignTopOutlined />}></Button>
+            </div>
           </div>
         </div>
 
       </div>
-      <div style={{ display: (pathname === '/home/community/post-detail') ? 'block' : 'none' }}>
+      <div
+        className='community-detail'
+        style={{ display: (pathname === '/home/community/post-detail') ? 'block' : 'none' }}
+      >
         <Outlet />
       </div>
+      <BlogModal ref={blogRef} />
     </div >
   )
 }

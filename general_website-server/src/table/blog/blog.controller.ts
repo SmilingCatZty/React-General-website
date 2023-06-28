@@ -9,7 +9,7 @@ import {
 } from '@nestjs/common';
 import { BlogService } from './blog.service';
 import { CreateBlogDto } from './dto/create-blog.dto';
-import { GetBlogDto } from './dto/get-blog.dto';
+import { GetBlogDto, GetBlogInfoDto } from './dto/get-blog.dto';
 import { LikeBlogDto } from './dto/like-blog.dto';
 import { Blog, BlogDocument, BlogStatus } from './schema/blog.schema';
 import { UserService } from '../user/user.service';
@@ -55,6 +55,20 @@ export class BlogController {
       }),
     );
     return blogList;
+  }
+
+  @Get('info')
+  async getBlogInfo(@Query() queryParam: GetBlogInfoDto) {
+    const { id } = queryParam;
+    const blog: BlogDocument = await this.blogService.findOneByBlogId(id);
+    const blogInfo = blog.toObject();
+    const { account_avatar, account_name } =
+      await this.userService.findOneByUserId(blog.blog_user_id);
+    return {
+      ...blogInfo,
+      blog_avatar: account_avatar,
+      blog_user_name: account_name,
+    };
   }
 
   // 获取白名单博客列表

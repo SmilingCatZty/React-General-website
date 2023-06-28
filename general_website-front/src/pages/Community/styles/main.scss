@@ -1,10 +1,10 @@
 .mainpage {
   width: 100%;
-
+  margin-bottom: 5rem;
   .contain-items {
     width: 100%;
     background-color: rgba(255, 255, 255, .1);
-    height: 300px;
+    max-height: 320px;
     padding: 10px;
     margin-bottom: 10px;
     box-sizing: border-box;
@@ -87,6 +87,7 @@
       height: 20px;
       line-height: 20px;
       text-align: right;
+      margin-top: 10px;
       padding: 0 10px;
       span{
         margin-left: 10px;

@@ -30,7 +30,7 @@ export class BlogService {
   ): Promise<Blog[]> {
     const blogList = this.blogModel
       .find(status ? { blog_status: status } : null)
-      .sort({ blog_create_time: +1 })
+      .sort({ blog_create_time: -1 })
       .skip(size * (page - 1))
       .limit(size)
       .exec();
@@ -53,8 +53,8 @@ export class BlogService {
    * 根据日志id查找
    * @param {string} blog_id 日志id
    */
-  async findOneByBlogId(blog_id: string): Promise<Blog> {
-    return this.blogModel.findOne({ blog_id }, { blog_like_list: 1 });
+  async findOneByBlogId(blog_id: string): Promise<BlogDocument> {
+    return this.blogModel.findOne({ blog_id }, { _id: 0, blog_status: 0 });
   }
 
   /**
@@ -62,9 +62,9 @@ export class BlogService {
    * @param {number} size
    * @param {number} page
    */
-  async findAllByHotView(size: number, page: number): Promise<Blog[]> {
+  async findAllByHotView(page: number, size: number): Promise<Blog[]> {
     return this.blogModel
-      .find({}, { blog_title: 1, blog_id: 1 })
+      .find({ blog_status: 'pass' }, { blog_title: 1, blog_id: 1 })
       .sort({ 'blog_like_list.length': -1 })
       .skip(size * (page - 1))
       .limit(size)

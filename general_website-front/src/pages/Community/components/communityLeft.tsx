@@ -54,7 +54,6 @@ const CommunityLeft: React.FC = () => {
     try {
       const res = await api.getFriendList(1000)
       if (res && res.status === 200) {
-        console.log(res.data);
         friendInfoList = res.data
         setFriendInfoList(friendInfoList)
       }

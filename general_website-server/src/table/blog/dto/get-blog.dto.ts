@@ -1,5 +1,5 @@
 import { Type } from 'class-transformer';
-import { IsNumber } from 'class-validator';
+import { IsNumber, IsString } from 'class-validator';
 
 export class GetBlogDto {
   @IsNumber()
@@ -9,4 +9,9 @@ export class GetBlogDto {
   @IsNumber()
   @Type(() => Number)
   size: number;
+}
+
+export class GetBlogInfoDto {
+  @IsString()
+  id: string;
 }

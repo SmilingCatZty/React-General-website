@@ -12,7 +12,6 @@ module.exports = {
 // const { createProxyMiddleware } = require('http-proxy-middleware')
 
 // module.exports = function (app) {
-//   console.log('appp',app);
 //   app.use(
 //     createProxyMiddleware(
 //       // match含有account前缀的请求，转发给target

@@ -55,7 +55,7 @@ export class UserController {
   clearUserInfo(user: CreateUserDto) {
     if (user) {
       const userObj = user;
-      delete userObj.account_id;
+      // delete userObj.account_id;
       delete userObj.account_password;
       return userObj;
     }

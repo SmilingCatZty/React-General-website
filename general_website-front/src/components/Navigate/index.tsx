@@ -8,7 +8,6 @@ interface NavigateProps {
   navList: NavigateInfoModal
 }
 
-
 const Navigation: React.FC<NavigateProps> = (props) => {
   const [current, setCurrent] = useState(props.navList.defaultNav);
   const navigateTo = useNavigate()

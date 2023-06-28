@@ -1,7 +1,6 @@
 import React, { useRef,useState } from 'react'
 import { DisplayFuncModel,DisplayFucInfoModel } from '@/modules/display'
-import DisplayDrawer from '@/components/Drawer.tsx/index'
-
+import DisplayDrawer from '@/components/drawer/index'
 
 interface FuncProps {
   funcInfo: DisplayFuncModel

@@ -3,7 +3,7 @@ import '../styles/board.scss'
 import { HomeBoardInfoModal, HomeMainInfoModal } from '@/modules/home/home'
 import { Tabs } from 'antd';
 import { List } from 'antd';
-import Swiper from '@/components/Swiper/index'
+import Swiper from '@/components/swiper/index'
 import { nanoid } from 'nanoid';
 import { SwiperImgListModal } from '@/modules/swiper';
 import { useNavigate } from 'react-router-dom';

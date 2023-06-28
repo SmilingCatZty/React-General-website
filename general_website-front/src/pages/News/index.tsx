@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Statistic, Button } from 'antd'
 import './news.scss'
-import MyFooter from '@/components/Footer/index'
+import MyFooter from '@/components/footer/index'
 import dayjs from 'dayjs'
 import api from '@/service/api/consult/consult.api'
 import { NewsForecastInfoModal, NewsBasicInfoModal, NewsConsultInfoModal } from '@/modules/news/news'
