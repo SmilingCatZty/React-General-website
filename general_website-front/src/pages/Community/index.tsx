@@ -37,14 +37,16 @@ const CommunityPage = () => {
       <div style={{ display: (pathname === '/home/community') ? 'block' : 'none' }}>
         <div className='community-occupy'></div>
         <div className='community-contain'>
-          <div className='community-left'>
-            <PageLeft />
-          </div>
-          <div className='community-main'>
-            <PageMain />
-          </div>
-          <div className='community-right'>
-            <PageRight />
+          <div className='contain-box'>
+            <div className='community-left'>
+              <PageLeft />
+            </div>
+            <div className='community-main'>
+              <PageMain />
+            </div>
+            <div className='community-right'>
+              <PageRight />
+            </div>
           </div>
           <div className='community-main-floating'>
             <div className='floating-btn'>
