@@ -28,8 +28,6 @@ export class BlogService {
     size: number,
     status?: string,
   ): Promise<Blog[]> {
-    console.log(status);
-
     const blogList = this.blogModel
       .find(status ? { blog_status: status } : null)
       .sort({ blog_create_time: -1 })

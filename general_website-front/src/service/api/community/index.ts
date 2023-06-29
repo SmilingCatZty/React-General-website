@@ -1,5 +1,5 @@
 import axios from '../../request'
-import { GetBlogListModal } from './community'
+import { GetBlogListModel, PublishCommentModel } from './community'
 
 const api = {
   /**
@@ -31,7 +31,7 @@ const api = {
    * @param createBlogData
    * @returns
    */
-  getBlogList: (pageParams: GetBlogListModal) => {
+  getBlogList: (pageParams: GetBlogListModel) => {
     return axios({
       method: 'get',
       url: '/blog/list',
@@ -99,6 +99,20 @@ const api = {
       url: `/blog/create`,
       data: {
         ...createBlogData
+      }
+    })
+  },
+
+  /**
+   * 发表评论
+   * @param {object} createBlogData
+   */
+  publishComment: (publishBlogData: PublishCommentModel) => {
+    return axios({
+      method: 'post',
+      url: `/comment/publish`,
+      data: {
+        ...publishBlogData
       }
     })
   }

@@ -12,7 +12,9 @@ import { CreateBlogDto } from './dto/create-blog.dto';
 import { GetBlogDto, GetBlogInfoDto } from './dto/get-blog.dto';
 import { LikeBlogDto } from './dto/like-blog.dto';
 import { Blog, BlogDocument, BlogStatus } from './schema/blog.schema';
+import { CommentDocument } from '../comment/schema/comment.schema';
 import { UserService } from '../user/user.service';
+import { CommentService } from '../comment/comment.service';
 import { ClearUselessPropertie } from 'src/decretors/global.dec';
 
 @Controller('blog')
@@ -20,6 +22,7 @@ export class BlogController {
   constructor(
     private readonly blogService: BlogService,
     private readonly userService: UserService,
+    private readonly commentService: CommentService,
   ) {}
 
   @Post('create')
@@ -87,14 +90,31 @@ export class BlogController {
     );
     const blogList = await Promise.all(
       blogs.map(async (item: BlogDocument) => {
+        // 查询用户信息
         const { account_avatar, account_name } =
           await this.userService.findOneByUserId(item.blog_user_id);
+        // 查询对应博客下的评论
+        const comments = await this.commentService.findByBlogId(item.blog_id);
+        const commentList = await Promise.all(
+          comments.map(async (item2: CommentDocument) => {
+            const { account_avatar, account_name } =
+              await this.userService.findOneByUserId(item2.comment_user_id);
+            const comment = item2.toObject();
+            return {
+              ...comment,
+              comment_user_avatar: account_avatar,
+              comment_user_name: account_name,
+            };
+          }),
+        );
+
         const blog = item.toObject(); // 转换为普通对象
         delete blog.blog_status;
         return {
           ...blog,
           blog_avatar: account_avatar,
           blog_user_name: account_name,
+          blog_comment_list: commentList,
         };
       }),
     );

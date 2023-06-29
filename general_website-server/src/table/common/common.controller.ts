@@ -29,7 +29,6 @@ export class CommonController {
     }),
   )
   uploadFile(@UploadedFile() file) {
-    console.log(file);
     return { filename: file.filename };
   }
 }

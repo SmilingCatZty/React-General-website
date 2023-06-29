@@ -18,6 +18,7 @@ import { FriendModule } from './table/friend/friend.module';
 import { ChatModule } from './table/chat/chat.moudle';
 import { BlogModule } from './table/blog/blog.module';
 import { CommonModule } from './table/common/common.module';
+import { CommentModule } from './table/comment/comment.module';
 
 @Module({
   // 导入模块
@@ -42,6 +43,7 @@ import { CommonModule } from './table/common/common.module';
     FriendModule,
     ChatModule,
     BlogModule,
+    CommentModule,
   ],
   controllers: [AppController],
   providers: [AppService],
