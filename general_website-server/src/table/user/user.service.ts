@@ -64,7 +64,9 @@ export class UserService {
 
   // 根据用户id查找用户信息
   async findOneByUserId(account_id: number): Promise<User> {
-    return this.userModule.findOne({ account_id });
+    return this.userModule
+      .findOne({ account_id })
+      .sort({ account_login_time: -1 });
   }
 
   async getList(): Promise<User[]> {
