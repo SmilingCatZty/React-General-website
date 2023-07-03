@@ -1,5 +1,5 @@
 import React from "react";
-import { lazyLoad } from "@/routers/utils/lazyLoad";
+import { lazyLoad } from "@/routers/utils/lazy-load";
 import { RouteObject } from '../interface/index'
 
 const errRouter: Array<RouteObject> = [

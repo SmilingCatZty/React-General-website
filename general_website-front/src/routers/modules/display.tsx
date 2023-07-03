@@ -1,6 +1,6 @@
 import React from "react";
 import { RouteObject } from '../interface/index'
-import { lazyLoad } from '../utils/lazyLoad'
+import { lazyLoad } from '../utils/lazy-load'
 
 const displayRouter: Array<RouteObject> = [
   {

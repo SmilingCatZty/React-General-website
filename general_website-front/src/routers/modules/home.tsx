@@ -1,6 +1,6 @@
 import React from "react";
 import { RouteObject } from '../interface/index'
-import { lazyLoad } from '@/routers/utils/lazyLoad'
+import { lazyLoad } from '@/routers/utils/lazy-load'
 
 
 const homeRouter: Array<RouteObject> = [
@@ -14,7 +14,7 @@ const homeRouter: Array<RouteObject> = [
     },
     children: [
       {
-        path: "main",
+        path: "/home/main",
         element: lazyLoad(React.lazy(() => import("@/pages/HomeMain/index"))),
         meta: {
           requiresAuth: false,
@@ -23,7 +23,7 @@ const homeRouter: Array<RouteObject> = [
         }
       },
       {
-        path: "news",
+        path: "/home/news",
         element: lazyLoad(React.lazy(() => import("@/pages/News/index"))),
         meta: {
           requiresAuth: false,
@@ -32,7 +32,7 @@ const homeRouter: Array<RouteObject> = [
         }
       },
       {
-        path: "community",
+        path: "/home/community",
         element: lazyLoad(React.lazy(() => import("@/pages/Community/index"))),
         meta: {
           requiresAuth: false,
@@ -41,7 +41,7 @@ const homeRouter: Array<RouteObject> = [
         },
         children: [
           {
-            path: "post-detail",
+            path: "/home/community/post-detail",
             element: lazyLoad(React.lazy(() => import("@/pages/Community/detail"))),
             meta: {
               requiresAuth: false,
@@ -52,7 +52,7 @@ const homeRouter: Array<RouteObject> = [
         ]
       },
       {
-        path: "data-manager",
+        path: "/home/data-manager",
         element: lazyLoad(React.lazy(() => import("@/pages/DataManager/index"))),
         meta: {
           requiresAuth: false,
@@ -61,7 +61,7 @@ const homeRouter: Array<RouteObject> = [
         },
         children: [
           {
-            path: "analyse",
+            path: "/home/data-manager/analyse",
             element: lazyLoad(React.lazy(() => import("@/pages/DataManager/components/analyze"))),
             meta: {
               requiresAuth: false,
@@ -70,7 +70,7 @@ const homeRouter: Array<RouteObject> = [
             }
           },
           {
-            path: 'consult',
+            path: '/home/data-manager/consult',
             element: lazyLoad(React.lazy(() => import("@/pages/DataManager/components/consult"))),
             meta: {
               requiresAuth: false,
@@ -79,7 +79,7 @@ const homeRouter: Array<RouteObject> = [
             }
           },
           {
-            path: 'activity-forecast',
+            path: '/home/data-manager/activity-forecast',
             element: lazyLoad(React.lazy(() => import("@/pages/DataManager/components/consult/forecast"))),
             meta: {
               requiresAuth: false,
@@ -88,7 +88,7 @@ const homeRouter: Array<RouteObject> = [
             }
           },
           {
-            path: 'blog',
+            path: '/home/data-manager/blog',
             element: lazyLoad(React.lazy(() => import("@/pages/DataManager/components/community"))),
             meta: {
               requiresAuth: false,

@@ -102,7 +102,7 @@ const ConsultActivityForecast: React.FC = () => {
         form={form}
         labelCol={{ span: 0, offset: 0 }}
         wrapperCol={{ span: 10 }}
-        style={{ minWidth: 600 }}
+        style={{ width: '100%' }}
         // initialValues={{ remember: true }}
         autoComplete="off"
         layout="horizontal"

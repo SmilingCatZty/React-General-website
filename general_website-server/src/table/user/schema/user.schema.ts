@@ -27,6 +27,9 @@ export class User {
   account_login_time: number; // 账号登陆时间
 
   @Prop()
+  account_login_status: boolean; // 账号登录状态
+
+  @Prop()
   account_location: string; // 账号位置信息
 
   @Prop()

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import type { MenuProps } from 'antd';
 import { Menu } from 'antd';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { NavigateInfoModal } from './navigate'
 
 interface NavigateProps {
@@ -9,6 +9,7 @@ interface NavigateProps {
 }
 
 const Navigation: React.FC<NavigateProps> = (props) => {
+  const { pathname } = useLocation()
   const [current, setCurrent] = useState<string>(''); // 这里需要与路由保持一致
   const navigateTo = useNavigate()
 
@@ -20,12 +21,16 @@ const Navigation: React.FC<NavigateProps> = (props) => {
 
   useEffect(() => {
     const storage = localStorage.getItem('curTab')
-    if (storage) {
-      setCurrent(() => storage)
+    if (['/home/main', '/home/news', '/home/community', '/home/config'].includes(pathname) && pathname !== storage) {
+      setCurrent(() => pathname)
     } else {
-      setCurrent(() => 'main')
+      if (storage) {
+        setCurrent(() => storage)
+      } else {
+        setCurrent(() => 'main')
+      }
     }
-  }, [])
+  }, [pathname])
 
   return (
     <Menu onClick={onClick} selectedKeys={[current]} defaultSelectedKeys={[current]} mode="horizontal" items={props.navList.menuList} />

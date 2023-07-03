@@ -166,7 +166,7 @@ const DataManagerCommunity: React.FC = () => {
         form={form}
         labelCol={{ span: 0, offset: 0 }}
         wrapperCol={{ span: 30 }}
-        style={{ minWidth: 1000 }}
+        style={{ width:'100%' }}
         initialValues={defaultChangeValue}
         autoComplete="off"
         layout="inline"

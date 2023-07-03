@@ -10,7 +10,7 @@ export class UserController {
 
   @Post('create')
   async create(@Body() createUserDto: CreateUserDto) {
-    const params = { ...createUserDto };
+    const params = { ...createUserDto, account_login_status: false };
     const user = await this.userService.create(params);
     return user;
   }
@@ -18,7 +18,7 @@ export class UserController {
   // 注册用户
   @Post('regist')
   async add(@Body() createUserDto: CreateUserDto) {
-    const params = { ...createUserDto };
+    const params = { ...createUserDto, account_login_status: false };
     const lastUser = await this.userService.findLastUser();
     params.account_id = lastUser[0].account_id + 1;
     const user = await this.userService.create(params);

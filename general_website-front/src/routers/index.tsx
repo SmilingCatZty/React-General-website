@@ -1,5 +1,5 @@
 import React from 'react'
-import { Navigate } from 'react-router-dom'
+import { Navigate, useRoutes } from 'react-router-dom'
 import displayRouter from './modules/display'
 import errorRouter from './modules/error'
 import homeRouter from './modules/home'
@@ -8,7 +8,7 @@ import registRouter from './modules/register'
 
 // const routers = import.meta.globEager("./modules/*.tsx") { 该方法暂时用不了，会报meta上没有globEager方法 }
 
-const routerConfig = [
+export const routerConfig = [
   // { path: 'home', element: <Home /> }
   {
     path: '/',
@@ -24,4 +24,9 @@ const routerConfig = [
   ...registRouter
 ]
 
-export default routerConfig
+const Router = () => {
+  const routes = useRoutes(routerConfig as any);
+  return routes;
+}
+
+export default Router

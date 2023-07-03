@@ -1,12 +1,13 @@
 import React from 'react';
-import { useRoutes } from 'react-router-dom';
-import routerConfig from './routers/index';
+import Router from './routers/index';
+import AuthRouter from '@/routers/utils/auth-router'
 
 const App = () => {
-  const outLet = useRoutes(routerConfig as any)
   return (
     <div id='App'>
-      {outLet}
+      <AuthRouter>
+        <Router/>
+      </AuthRouter>
     </div>
   )
 }

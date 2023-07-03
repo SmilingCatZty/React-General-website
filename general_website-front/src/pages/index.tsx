@@ -31,30 +31,30 @@ const HomePage: React.FC = (props: any) => {
     menuList: [
       {
         label: '首页',
-        key: 'main',
+        key: '/home/main',
         icon: <HomeOutlined />
       },
       {
         label: '资讯',
-        key: 'news',
+        key: '/home/news',
         icon: <MailOutlined />,
         disabled: false,
       },
       {
         label: '社区',
-        key: 'community',
+        key: '/home/community',
         icon: <AlibabaOutlined />,
         disabled: false,
       },
       {
         label: '数据管理',
-        key: 'data-manager',
+        key: '/home/data-manager',
         icon: <LineChartOutlined />,
         disabled: false,
       },
       {
         label: '配置',
-        key: 'config',
+        key: '/home/config',
         icon: <PushpinOutlined />,
         disabled: true,
       }
