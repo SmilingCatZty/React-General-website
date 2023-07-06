@@ -59,4 +59,10 @@ export class NoticeService {
   async update(params): Promise<Notice[]> {
     return this.NoticeModel.findByIdAndUpdate(params._id, params);
   }
+
+  async getConsultInfoById(_id: string): Promise<Notice> {
+    console.log(_id);
+    const a = this.NoticeModel.findById(_id);
+    return a;
+  }
 }

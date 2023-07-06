@@ -21,7 +21,7 @@ type NewsBasicInfoModal = {
 
 // 资讯消息模型
 type NewsConsultInfoModal = {
-  _id: number
+  _id: string
   title: string // 资讯标题
   type: string // 资讯类型
   img: string // 资讯图片
@@ -29,4 +29,10 @@ type NewsConsultInfoModal = {
   createTime: number // 资讯创建时间
 }
 
-export { NewsForecastInfoModal, NewsBasicInfoModal, NewsConsultInfoModal }
+interface ConsultDetailInfoModel extends NewsConsultInfoModal {
+  user_name: string
+  user_id: number
+  user_avatar: string
+}
+
+export { NewsForecastInfoModal, NewsBasicInfoModal, NewsConsultInfoModal, ConsultDetailInfoModel }

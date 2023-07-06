@@ -23,7 +23,7 @@ const CommunityMain: React.FC<CommunityMainProps> = (props) => {
 
   // 点赞
   const like = async (item: any) => {
-    const res = await api.like(item.blog_id, 1000)
+    const res = await api.like(item.blog_id, user.userInfo.account_id)
     if (res.data && res.status === 200) {
       getBlogList()
     }
@@ -58,6 +58,7 @@ const CommunityMain: React.FC<CommunityMainProps> = (props) => {
         const { status, data } = await api.publishComment(params)
         if (status === 201 && data) {
           message.info('评论成功')
+          getBlogList()
         }
       } catch (error) {
         console.error('发表评论', error);

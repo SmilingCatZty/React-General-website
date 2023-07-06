@@ -95,7 +95,7 @@ const DataManagerConsult: React.FC = () => {
       ...pageInfo,
       info: searchInfo
     }
-    const res: any = await api.getConsultInfo(params)
+    const res: any = await api.getConsultList(params)
     if (res.status === 200) {
       setDetailInfoList(res.data.notice)
       setPageTotal(res.data.total)

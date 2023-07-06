@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { Statistic, Button } from 'antd'
-import './news.scss'
+import './index.scss'
 import MyFooter from '@/components/footer/index'
 import dayjs from 'dayjs'
 import api from '@/service/api/consult/consult.api'
 import { NewsForecastInfoModal, NewsBasicInfoModal, NewsConsultInfoModal } from '@/modules/news/news'
+import { useNavigate } from 'react-router-dom'
 
 const { Countdown } = Statistic;
 
@@ -18,14 +19,10 @@ const newsTypeList = [
 // const deadline = Date.now() + 1000 * 60 * 60 * 24 * 2 + 1000 * 30; // Dayjs is also OK
 
 const NewsPage: React.FC = () => {
-  let [pageInfo, setPageInfo] = useState({
-    page: 1,
-    size: 10
-  })
+  const navigateTo = useNavigate()
+  let [pageInfo, setPageInfo] = useState({ page: 1, size: 10 })
   // 页面资讯信息
-  let consultInfo = {
-    type: ''
-  }
+  let consultInfo = { type: '' }
   // 新活动预告信息
   let [forecastInfo, setForecastInfo] = useState<NewsForecastInfoModal>({
     _id: '',
@@ -61,12 +58,14 @@ const NewsPage: React.FC = () => {
 
   // 获取资讯列表
   const getConsultList = async () => {
+    console.log('pageInfo',pageInfo);
+    
     const params = {
       ...pageInfo,
       info: consultInfo
     }
     try {
-      const res: any = await api.getConsultInfo(params)
+      const res: any = await api.getConsultList(params)
       if (res.data && res.status === 200) {
         setConsultList(() => res.data.notice)
       }
@@ -76,9 +75,9 @@ const NewsPage: React.FC = () => {
   }
 
   // 加载更多
-  const lodaMore = () => {
-    pageInfo.size += 2
-    setPageInfo(pageInfo)
+  const lodaMore = async() => {
+    const page = { ...pageInfo, size: pageInfo.size + 2 }
+    setPageInfo(page)
     getConsultList()
   }
 
@@ -86,15 +85,16 @@ const NewsPage: React.FC = () => {
   const consultTypeHandle = (info: any) => {
     consultInfo.type = info.key
     getConsultList()
+  }
 
+  const viewDetail = (info: NewsConsultInfoModal) => {
+    navigateTo(`/consult-detail?id=${info._id}`)
   }
 
 
   useEffect(() => {
-    return () => {
-      getNewsList()
-      getConsultList()
-    }
+    getNewsList()
+    getConsultList()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -137,7 +137,7 @@ const NewsPage: React.FC = () => {
             {
               consultList.map((item) => {
                 return (
-                  <li key={item.title} className='info-list_item'>
+                  <li key={item.title} className='info-list_item' onClick={() => viewDetail(item)}>
                     <div className='item_contain'>
                       <img src={item.img} alt="" />
                       <div className='item-contain_content'>

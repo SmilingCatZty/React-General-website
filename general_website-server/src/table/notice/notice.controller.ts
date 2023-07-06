@@ -12,7 +12,6 @@ import { NoticeService } from './notice.service';
 import { CreateNoticeDto } from './dto/create-notice.dto';
 import { UpdateNoticeDto } from './dto/update-notice.dto';
 import { ListNoticeDto } from './dto/list-notice.dto';
-import { ClearUselessPropertie } from 'src/decretors/global.dec';
 
 @Controller('notice')
 export class NoticeController {
@@ -44,6 +43,17 @@ export class NoticeController {
         notice,
         total: total.length,
       };
+    } catch (error) {
+      throw new InternalServerErrorException(error.msg);
+    }
+  }
+
+  @Get('info')
+  async getConsultInfo(@Query() params) {
+    try {
+      const news = await this.noticeService.getConsultInfoById(params.id);
+      console.log('news', news);
+      return news;
     } catch (error) {
       throw new InternalServerErrorException(error.msg);
     }

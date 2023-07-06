@@ -4,6 +4,7 @@ import {
   Get,
   InternalServerErrorException,
   Post,
+  Query,
 } from '@nestjs/common';
 import { NewsService } from './news.service';
 import { CreateNewsDto } from './dto/create-news.dto';

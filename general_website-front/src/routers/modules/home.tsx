@@ -28,8 +28,19 @@ const homeRouter: Array<RouteObject> = [
         meta: {
           requiresAuth: false,
           title: "资讯",
-          key: "news"
-        }
+          key: "news",
+        },
+        children: [
+          {
+            path: "/home/news/consult-detail",
+            element: lazyLoad(React.lazy(() => import("@/pages/News/detail"))),
+            meta: {
+              requiresAuth: false,
+              title: "帖子详情",
+              key: "post-detail"
+            }
+          },
+        ]
       },
       {
         path: "/home/community",

@@ -37,7 +37,7 @@ const AuthRouter = (props: { children: JSX.Element }) => {
   
   const routerList = dynamicRouter.concat(staticRouter);
   
-  console.log('route',route);
+  console.log('routerList',routerList);
   // * 如果访问的地址没有在路由表中重定向到403页面
   if (routerList.indexOf(pathname) === -1) return <Navigate to="/403" />;
 

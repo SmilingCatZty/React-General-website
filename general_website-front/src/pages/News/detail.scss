@@ -1,0 +1,70 @@
+.consult-detail {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 100vh;
+  background-color: rgba(1, 1, 1, .1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5rem 0;
+
+  .detail-contain {
+    width: 800px;
+    min-height: 600px;
+    background-color: #fff;
+    padding: 10px 20px 0 20px;
+
+    .detail-head {
+      display: flex;
+      align-items: center;
+
+      .head-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-left: 10px;
+      }
+    }
+
+    .detail-body {
+      box-sizing: border-box;
+
+      .body-title {
+        display: flex;
+        min-height: 40px;
+        padding: 10px;
+        font-size: 28px;
+        line-height: 30px;
+        justify-content: center;
+        align-items: center;
+        padding-left: 20px;
+      }
+
+      .body-description {
+        padding: 20px;
+        font-size: 20px;
+        line-height: 26px;
+      }
+
+      .body-img {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        box-sizing: border-box;
+        width: 100%;
+        min-height: 500px;
+        padding: 20px;
+
+        img {
+          display: block;
+          margin: 10px;
+          width: 500px;
+          height: 500px;
+          object-fit: cover;
+          border: 2px solid #ccc;
+          border-radius: 15px;
+        }
+      }
+    }
+  }
+}

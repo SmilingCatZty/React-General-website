@@ -3,7 +3,7 @@ import { ConsultInfoModel, RequestGetInfoListModel, ForecastInfoModal } from '@/
 
 const api = {
   // 获取资讯列表
-  getConsultInfo: (params: RequestGetInfoListModel) => {
+  getConsultList: (params: RequestGetInfoListModel) => {
     return axios({
       method: 'get',
       url: '/notice/list',
@@ -40,6 +40,16 @@ const api = {
       url: '/news/list',
       data: {
         params
+      }
+    })
+  },
+
+  getConsultInfo: (id: string) => {
+    return axios({
+      method: 'get',
+      url: '/notice/info',
+      params: {
+        id
       }
     })
   },
